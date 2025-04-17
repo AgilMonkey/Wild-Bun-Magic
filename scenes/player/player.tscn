@@ -13,10 +13,11 @@ process_callback = 0
 position_smoothing_enabled = true
 
 [node name="Gfx" type="Sprite2D" parent="."]
-scale = Vector2(0.375, 0.375)
+scale = Vector2(0.375, 0.75)
 texture = ExtResource("1_8afob")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_8afob")
 
 [node name="PlayerMovement" type="Node" parent="."]
