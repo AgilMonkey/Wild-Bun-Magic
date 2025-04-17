@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://ca8tn02iyeljw"]
+[gd_scene load_steps=3 format=3 uid="uid://ca8tn02iyeljw"]
+
+[ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_0ppp4"]
+[ext_resource type="PackedScene" uid="uid://dhl552xt6p4c1" path="res://scenes/player/player.tscn" id="1_db3qx"]
 
 [node name="main_test_scene" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.355314, 0.355314, 0.355314, 1)
+scale = Vector2(24.8906, 24.8906)
+texture = ExtResource("1_0ppp4")
+
+[node name="Player" parent="." instance=ExtResource("1_db3qx")]
