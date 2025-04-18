@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhl552xt6p4c1"]
+[gd_scene load_steps=11 format=3 uid="uid://dhl552xt6p4c1"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/player.gd" id="1_qiwj3"]
@@ -7,9 +7,14 @@
 [ext_resource type="Script" uid="uid://ncbf2pf4v4m4" path="res://entities/spells/simple_spell/simple_spell.gd" id="4_bls4j"]
 [ext_resource type="Script" uid="uid://ckiwrkpyugv3q" path="res://entities/spells/shotgun_spell/shotgun_spell.gd" id="5_8fjmc"]
 [ext_resource type="Script" uid="uid://ctvcfg16g1pkt" path="res://commons/health/health_component.gd" id="6_8fjmc"]
+[ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="8_26q78"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
-size = Vector2(48, 48)
+size = Vector2(48, 105)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26q78"]
+radius = 26.0
+height = 116.0
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
@@ -25,9 +30,10 @@ scale = Vector2(0.5, 1)
 texture = ExtResource("1_8afob")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 40)
+position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_8afob")
 debug_color = Color(0, 0.6, 0.701961, 0)
+metadata/_edit_lock_ = true
 
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("2_dovo2")
@@ -48,3 +54,11 @@ script = ExtResource("4_bls4j")
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("6_8fjmc")
 metadata/_custom_type_script = "uid://ctvcfg16g1pkt"
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("8_26q78")
+metadata/_custom_type_script = "uid://d2ssuuarj6kcv"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CapsuleShape2D_26q78")
+debug_color = Color(0, 0.643416, 0.300425, 0.42)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctqbx520r1gsq"]
+
+[ext_resource type="Script" uid="uid://closisggnwstf" path="res://commons/attackbox/attackbox_component.gd" id="1_5y6r5"]
+
+[node name="AttackboxComponent" type="Area2D"]
+collision_layer = 12
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_5y6r5")
