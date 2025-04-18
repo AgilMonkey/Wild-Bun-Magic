@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhl552xt6p4c1"]
+[gd_scene load_steps=12 format=3 uid="uid://dhl552xt6p4c1"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/player.gd" id="1_qiwj3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://ckiwrkpyugv3q" path="res://entities/spells/shotgun_spell/shotgun_spell.gd" id="5_8fjmc"]
 [ext_resource type="Script" uid="uid://ctvcfg16g1pkt" path="res://commons/health/health_component.gd" id="6_8fjmc"]
 [ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="8_26q78"]
+[ext_resource type="Script" uid="uid://c3pbprpuaguim" path="res://entities/player/player_ui_stuff.gd" id="9_bectd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
 size = Vector2(48, 105)
@@ -63,5 +64,9 @@ metadata/_custom_type_script = "uid://d2ssuuarj6kcv"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape2D_26q78")
 debug_color = Color(0, 0.643416, 0.300425, 0.42)
+
+[node name="PlayerUIStuff" type="Node" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("9_bectd")
+health = NodePath("../HealthComponent")
 
 [connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]

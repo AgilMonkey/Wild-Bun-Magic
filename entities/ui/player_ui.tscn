@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dklbwgr08tit0"]
+[gd_scene load_steps=5 format=3 uid="uid://dklbwgr08tit0"]
 
+[ext_resource type="Script" uid="uid://uncsybshfvof" path="res://entities/ui/healthbar_ui.gd" id="1_2d16l"]
 [ext_resource type="Script" uid="uid://ccsuocuo5haky" path="res://entities/ui/spell_ui.gd" id="1_77lnr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77lnr"]
@@ -36,6 +37,7 @@ layout_mode = 2
 anchors_preset = 0
 offset_right = 560.0
 offset_bottom = 149.0
+script = ExtResource("1_2d16l")
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/Control/HealthbarUI"]
 layout_mode = 0
