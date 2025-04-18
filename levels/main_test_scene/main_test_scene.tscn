@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ca8tn02iyeljw"]
+[gd_scene load_steps=8 format=3 uid="uid://ca8tn02iyeljw"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_0ppp4"]
 [ext_resource type="PackedScene" uid="uid://dhl552xt6p4c1" path="res://entities/player/player.tscn" id="1_db3qx"]
 [ext_resource type="Script" uid="uid://bg16oasgteqcj" path="res://levels/main_test_scene/main_test_scene.gd" id="1_jvi5a"]
 [ext_resource type="PackedScene" uid="uid://dklbwgr08tit0" path="res://entities/ui/player_ui.tscn" id="4_o4x35"]
 [ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="5_1itg7"]
+[ext_resource type="PackedScene" uid="uid://bl0spk6gymtey" path="res://entities/enemies/Enemy.tscn" id="6_k73vk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1itg7"]
 size = Vector2(356, 498)
@@ -16,6 +17,7 @@ script = ExtResource("1_jvi5a")
 modulate = Color(0.355314, 0.355314, 0.355314, 1)
 scale = Vector2(24.8906, 24.8906)
 texture = ExtResource("1_0ppp4")
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_db3qx")]
 
@@ -32,3 +34,6 @@ shape = SubResource("RectangleShape2D_1itg7")
 [node name="Sprite2D" type="Sprite2D" parent="AttackboxComponent"]
 scale = Vector2(2.65625, 3.8125)
 texture = ExtResource("1_0ppp4")
+
+[node name="Enemy" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(-534, -310)

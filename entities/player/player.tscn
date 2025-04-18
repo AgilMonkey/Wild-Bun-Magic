@@ -17,7 +17,7 @@ size = Vector2(48, 105)
 radius = 26.0
 height = 116.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_qiwj3")
 

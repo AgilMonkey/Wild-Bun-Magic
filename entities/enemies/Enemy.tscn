@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bl0spk6gymtey"]
+
+[ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_nwexf"]
+[ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="2_paah2"]
+[ext_resource type="Script" uid="uid://bfgcawdmt8vox" path="res://entities/enemies/follow_player.gd" id="3_82qr8"]
+[ext_resource type="Script" uid="uid://cl5g6pwsy7x6j" path="res://entities/enemies/simple_attacking.gd" id="4_rfvys"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nwexf"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_paah2"]
+radius = 40.0
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+motion_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_nwexf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nwexf")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="AttackboxComponent" parent="." instance=ExtResource("2_paah2")]
+damage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]
+shape = SubResource("CircleShape2D_paah2")
+debug_color = Color(0.790018, 0.13228, 0.272505, 0.42)
+
+[node name="FollowPlayer" type="Node" parent="."]
+script = ExtResource("3_82qr8")
+
+[node name="SimpleAttacking" type="Node" parent="." node_paths=PackedStringArray("attackbox", "attackbox_col")]
+script = ExtResource("4_rfvys")
+attackbox = NodePath("../AttackboxComponent")
+attackbox_col = NodePath("../AttackboxComponent/CollisionShape2D")
