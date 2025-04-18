@@ -11,5 +11,5 @@ var speed: int = 700
 var is_shooting: bool = false
 
 
-func shoot(cur_node: Node2D):
+func shoot(_cur_node: Node2D):
 	pass

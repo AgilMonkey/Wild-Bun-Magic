@@ -14,7 +14,7 @@ func _init() -> void:
 	bullet_scene = preload("res://entities/bullet/bullet.tscn")
 
 
-func shoot(cur_node: Node2D):
+func shoot(_cur_node: Node2D):
 	if is_shooting: return
 	is_shooting = true
 	ammo -= 1
