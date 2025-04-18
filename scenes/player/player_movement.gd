@@ -36,7 +36,7 @@ func _physics_process(_delta: float) -> void:
 
 func dash():
 	if is_dashing: return
-	if not can_dash: return
+	if can_dash == false: return
 	is_dashing = true
 	dash_cooldown()
 	
@@ -46,7 +46,7 @@ func dash():
 	
 
 func dash_cooldown():
-	if not can_dash: return
+	if can_dash == false: return
 	can_dash = false
 	await get_tree().create_timer(dash_cooldown_time).timeout
 	can_dash = true

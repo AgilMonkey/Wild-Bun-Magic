@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ca8tn02iyeljw"]
+[gd_scene load_steps=4 format=3 uid="uid://ca8tn02iyeljw"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_0ppp4"]
 [ext_resource type="PackedScene" uid="uid://dhl552xt6p4c1" path="res://scenes/player/player.tscn" id="1_db3qx"]
+[ext_resource type="Script" uid="uid://bg16oasgteqcj" path="res://scenes/levels/main_test_scene/main_test_scene.gd" id="1_jvi5a"]
 
 [node name="main_test_scene" type="Node2D"]
+script = ExtResource("1_jvi5a")
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.355314, 0.355314, 0.355314, 1)
