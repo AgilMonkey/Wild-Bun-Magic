@@ -78,3 +78,9 @@ layout_mode = 2
 text = "Ammo: 10"
 label_settings = SubResource("LabelSettings_77lnr")
 horizontal_alignment = 2
+
+[node name="ReloadLabel" type="Label" parent="MarginContainer/Control/SpellUI/VBoxContainer"]
+layout_mode = 2
+text = "Can Shoot!"
+label_settings = SubResource("LabelSettings_77lnr")
+horizontal_alignment = 2
