@@ -2,7 +2,7 @@ class_name HealthComponent
 extends Node
 
 
-signal health_changed(val)
+signal health_changed(val: int)
 signal health_reached_zero
 
 @export var max_health: int = 100

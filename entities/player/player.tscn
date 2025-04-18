@@ -55,10 +55,13 @@ script = ExtResource("4_bls4j")
 script = ExtResource("6_8fjmc")
 metadata/_custom_type_script = "uid://ctvcfg16g1pkt"
 
-[node name="HitboxComponent" type="Area2D" parent="."]
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 script = ExtResource("8_26q78")
+health = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://d2ssuuarj6kcv"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape2D_26q78")
 debug_color = Color(0, 0.643416, 0.300425, 0.42)
+
+[connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
