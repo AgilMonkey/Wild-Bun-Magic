@@ -31,6 +31,7 @@ debug_color = Color(0.790018, 0.13228, 0.272505, 0.42)
 
 [node name="FollowPlayer" type="Node" parent="."]
 script = ExtResource("3_82qr8")
+speed = 220
 
 [node name="SimpleAttacking" type="Node" parent="." node_paths=PackedStringArray("attackbox", "attackbox_col")]
 script = ExtResource("4_rfvys")
