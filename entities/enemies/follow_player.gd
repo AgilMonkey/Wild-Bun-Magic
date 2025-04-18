@@ -7,7 +7,7 @@ extends Node
 @onready var body: CharacterBody2D = get_parent()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var to_player = player.global_position - body.global_position
 	body.velocity = to_player.normalized() * speed
 	body.move_and_slide()

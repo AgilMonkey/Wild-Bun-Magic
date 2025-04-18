@@ -1,14 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca8tn02iyeljw"]
+[gd_scene load_steps=6 format=3 uid="uid://ca8tn02iyeljw"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_0ppp4"]
 [ext_resource type="PackedScene" uid="uid://dhl552xt6p4c1" path="res://entities/player/player.tscn" id="1_db3qx"]
 [ext_resource type="Script" uid="uid://bg16oasgteqcj" path="res://levels/main_test_scene/main_test_scene.gd" id="1_jvi5a"]
 [ext_resource type="PackedScene" uid="uid://dklbwgr08tit0" path="res://entities/ui/player_ui.tscn" id="4_o4x35"]
-[ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="5_1itg7"]
 [ext_resource type="PackedScene" uid="uid://bl0spk6gymtey" path="res://entities/enemies/Enemy.tscn" id="6_k73vk"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1itg7"]
-size = Vector2(356, 498)
 
 [node name="main_test_scene" type="Node2D"]
 script = ExtResource("1_jvi5a")
@@ -25,15 +21,50 @@ metadata/_edit_lock_ = true
 
 [node name="PlayerUI" parent="UI" instance=ExtResource("4_o4x35")]
 
-[node name="AttackboxComponent" parent="." instance=ExtResource("5_1itg7")]
-position = Vector2(634, 44)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]
-shape = SubResource("RectangleShape2D_1itg7")
-
-[node name="Sprite2D" type="Sprite2D" parent="AttackboxComponent"]
-scale = Vector2(2.65625, 3.8125)
-texture = ExtResource("1_0ppp4")
-
 [node name="Enemy" parent="." instance=ExtResource("6_k73vk")]
 position = Vector2(-534, -310)
+
+[node name="Enemy2" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(-171, -431)
+
+[node name="Enemy3" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(393, -502)
+
+[node name="Enemy4" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(1091, 41)
+
+[node name="Enemy5" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(1229, 551)
+
+[node name="Enemy6" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(757, 910)
+
+[node name="Enemy7" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(97, 1056)
+
+[node name="Enemy8" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(-279, 1069)
+
+[node name="Enemy9" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(-525, 935)
+
+[node name="Enemy10" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(-930, 943)
+
+[node name="Enemy11" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(1250, 1295)
+
+[node name="Enemy12" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(778, 1654)
+
+[node name="Enemy13" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(118, 1800)
+
+[node name="Enemy14" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(-258, 1813)
+
+[node name="Enemy15" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(-504, 1679)
+
+[node name="Enemy16" parent="." instance=ExtResource("6_k73vk")]
+position = Vector2(-909, 1687)
