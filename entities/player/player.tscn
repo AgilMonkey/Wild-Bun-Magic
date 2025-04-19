@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhl552xt6p4c1"]
+[gd_scene load_steps=20 format=3 uid="uid://dhl552xt6p4c1"]
 
 [ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/logics/player.gd" id="1_qiwj3"]
-[ext_resource type="Texture2D" uid="uid://dt1lwxcvfm7h5" path="res://entities/player/assets/player.png" id="2_7thud"]
+[ext_resource type="Texture2D" uid="uid://b0sh4nnlonsj8" path="res://entities/player/assets/player2_2.png" id="2_a1qjk"]
 [ext_resource type="Script" uid="uid://y04u7tfbluw2" path="res://entities/player/logics/player_movement.gd" id="2_dovo2"]
 [ext_resource type="Script" uid="uid://d2xqhqa7tnsor" path="res://entities/player/logics/player_staff.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://ncbf2pf4v4m4" path="res://entities/spells/simple_spell/simple_spell.gd" id="4_bls4j"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://c3pbprpuaguim" path="res://entities/player/logics/player_ui_stuff.gd" id="9_bectd"]
 [ext_resource type="Script" uid="uid://b6x84glu53ptq" path="res://commons/controllers/character_body_move_stuff.gd" id="10_wvtmh"]
 [ext_resource type="Script" uid="uid://cs1vxy5t8bgst" path="res://entities/player/logics/player_animation.gd" id="12_a1qjk"]
+[ext_resource type="Texture2D" uid="uid://dgy2q30nc5x1e" path="res://entities/player/assets/player2.png" id="13_j3ovn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
 size = Vector2(35, 95.5)
@@ -19,6 +20,87 @@ size = Vector2(35, 95.5)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26q78"]
 radius = 16.0
 height = 104.0
+
+[sub_resource type="Animation" id="Animation_a1qjk"]
+resource_name = "idle"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_a1qjk")]
+}
+
+[sub_resource type="Animation" id="Animation_j3ovn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_a1qjk")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -13)]
+}
+
+[sub_resource type="Animation" id="Animation_afbqv"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_a1qjk"), ExtResource("13_j3ovn"), ExtResource("2_a1qjk")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(0, 0, 0),
+"update": 0,
+"values": [Vector2(-2, -13), Vector2(-2, -19), Vector2(-2, -13)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j3ovn"]
+_data = {
+&"RESET": SubResource("Animation_j3ovn"),
+&"idle": SubResource("Animation_a1qjk"),
+&"walk": SubResource("Animation_afbqv")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
@@ -30,9 +112,8 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -9)
-scale = Vector2(0.169444, 0.169444)
-texture = ExtResource("2_7thud")
+position = Vector2(-2, -13)
+texture = ExtResource("2_a1qjk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 18.75)
@@ -80,9 +161,15 @@ health = NodePath("../HealthComponent")
 [node name="CharacterBodyMoveStuff" type="Node" parent="."]
 script = ExtResource("10_wvtmh")
 
-[node name="PlayerAnimation" type="Node" parent="." node_paths=PackedStringArray("player_staff", "player_sprite")]
+[node name="PlayerAnimation" type="Node" parent="." node_paths=PackedStringArray("player_staff", "player_sprite", "animation_player")]
 script = ExtResource("12_a1qjk")
 player_staff = NodePath("../PlayerStaff")
 player_sprite = NodePath("../PlayerSprite")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j3ovn")
+}
 
 [connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
