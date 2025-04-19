@@ -10,7 +10,7 @@ func _init() -> void:
 	spell_name = "Shotgun"
 	description = "M1 to shoot"
 	ammo = 10
-	damage = 50
+	damage = 15
 	rate_of_fire = 1.0
 	
 	bullet_scene = preload("res://entities/bullet/bullet.tscn")
@@ -26,6 +26,7 @@ func shoot(_cur_node: Node2D):
 	
 	for n in range(5):
 		var bullet: Bullet = bullet_scene.instantiate()
+		bullet.damage = damage
 		bullet.global_position = global_position
 		bullet.global_rotation = global_rotation
 		bullet.rotate(deg_to_rad(start_rot))
