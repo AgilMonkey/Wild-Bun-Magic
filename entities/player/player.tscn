@@ -211,8 +211,10 @@ position = Vector2(-1.5, 18.75)
 shape = SubResource("RectangleShape2D_8afob")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="PlayerMovement" type="Node" parent="."]
+[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("player_col", "player_hit_col")]
 script = ExtResource("2_dovo2")
+player_col = NodePath("../CollisionShape2D")
+player_hit_col = NodePath("../HitboxComponent/CollisionShape2D")
 
 [node name="PlayerStaff" type="Node2D" parent="."]
 script = ExtResource("3_gmlin")

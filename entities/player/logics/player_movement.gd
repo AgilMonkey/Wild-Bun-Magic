@@ -5,6 +5,8 @@ extends Node
 @export var dash_speed: float = 700.0
 @export var dash_time: float = 0.3
 @export var dash_cooldown_time: float = 2.0
+@export var player_col: CollisionShape2D
+@export var player_hit_col: CollisionShape2D
 
 var is_dashing: bool = false
 var can_dash: bool = true
@@ -41,9 +43,16 @@ func dash():
 	dash_cooldown()
 	
 	body.velocity = last_input_dir * dash_speed
+	become_invisible(true)
 	await get_tree().create_timer(dash_time).timeout
+	become_invisible(false)
 	is_dashing = false
-	
+
+
+func become_invisible(enable: bool):
+	player_col.disabled = enable
+	player_hit_col.disabled = enable
+
 
 func dash_cooldown():
 	if can_dash == false: return
