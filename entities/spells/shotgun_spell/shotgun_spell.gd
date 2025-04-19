@@ -31,7 +31,7 @@ func shoot(_cur_node: Node2D):
 		bullet.global_rotation = global_rotation
 		bullet.rotate(deg_to_rad(start_rot))
 		bullet.velocity = bullet.global_transform.x * speed
-		get_tree().root.add_child(bullet)
+		get_tree().current_scene.add_child(bullet)
 		start_rot += 20
 	
 	await get_tree().create_timer(rate_of_fire).timeout

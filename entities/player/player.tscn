@@ -202,6 +202,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(-2, -13)
 texture = ExtResource("2_a1qjk")
 

@@ -4,14 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://dbb54nr1beapg" path="res://entities/health_drop/health_drop.tscn" id="2_kg1dj"]
 [ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="2_paah2"]
 [ext_resource type="Script" uid="uid://bfgcawdmt8vox" path="res://entities/enemies/follow_player.gd" id="3_82qr8"]
-[ext_resource type="Texture2D" uid="uid://4ug6y6vsnpfm" path="res://entities/player/assets/enemy.png" id="3_kg1dj"]
+[ext_resource type="Texture2D" uid="uid://cph0nn63lko2v" path="res://entities/enemies/assets/enemy2.png" id="3_oxdrg"]
 [ext_resource type="Script" uid="uid://cl5g6pwsy7x6j" path="res://entities/enemies/simple_attacking.gd" id="4_rfvys"]
 [ext_resource type="Script" uid="uid://ctvcfg16g1pkt" path="res://commons/health/health_component.gd" id="5_i8idp"]
 [ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="6_ae7xc"]
 [ext_resource type="Script" uid="uid://ck82pbmrvnc4n" path="res://entities/enemies/enemy_animation.gd" id="9_oxdrg"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nwexf"]
-radius = 32.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oxdrg"]
+radius = 18.0
+height = 58.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_paah2"]
 radius = 40.0
@@ -28,12 +29,15 @@ health_pickup_instance = ExtResource("2_kg1dj")
 chance_to_drop_health = 0.05
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
-position = Vector2(0, -8)
-scale = Vector2(0.08, 0.08)
-texture = ExtResource("3_kg1dj")
+y_sort_enabled = true
+scale = Vector2(0.0735, 0.0735)
+texture = ExtResource("3_oxdrg")
+offset = Vector2(10.2041, -112.245)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_nwexf")
+position = Vector2(2, 5)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_oxdrg")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="AttackboxComponent" parent="." instance=ExtResource("2_paah2")]
@@ -43,6 +47,19 @@ is_damage_by_itself = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]
 shape = SubResource("CircleShape2D_paah2")
 debug_color = Color(0.790018, 0.13228, 0.272505, 0.42)
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("6_ae7xc")
+health = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://d2ssuuarj6kcv"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_ae7xc")
+debug_color = Color(0.0417786, 0.650393, 0, 0.42)
+
+[node name="EnemyAnimation" type="Node2D" parent="." node_paths=PackedStringArray("enemy_sprite")]
+script = ExtResource("9_oxdrg")
+enemy_sprite = NodePath("../EnemySprite")
 
 [node name="FollowPlayer" type="Node" parent="."]
 script = ExtResource("3_82qr8")
@@ -57,17 +74,5 @@ attackbox_col = NodePath("../AttackboxComponent/CollisionShape2D")
 script = ExtResource("5_i8idp")
 max_health = 50
 metadata/_custom_type_script = "uid://ctvcfg16g1pkt"
-
-[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
-script = ExtResource("6_ae7xc")
-health = NodePath("../HealthComponent")
-metadata/_custom_type_script = "uid://d2ssuuarj6kcv"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-shape = SubResource("RectangleShape2D_ae7xc")
-
-[node name="EnemyAnimation" type="Node2D" parent="." node_paths=PackedStringArray("enemy_sprite")]
-script = ExtResource("9_oxdrg")
-enemy_sprite = NodePath("../EnemySprite")
 
 [connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]

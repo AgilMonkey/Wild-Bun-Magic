@@ -18,4 +18,4 @@ func drop_pickups():
 func drop_health():
 	var health: Node2D = health_pickup_instance.instantiate()
 	health.global_position = global_position
-	get_tree().root.call_deferred("add_child", health)
+	get_tree().current_scene.call_deferred("add_child", health)

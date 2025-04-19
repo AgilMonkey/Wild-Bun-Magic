@@ -23,7 +23,7 @@ func shoot(_cur_node: Node2D):
 	bullet.damage = damage
 	bullet.global_position = global_position
 	bullet.velocity = global_transform.x * speed
-	get_tree().root.add_child(bullet)
+	get_tree().current_scene.add_child(bullet)
 	
 	await get_tree().create_timer(rate_of_fire).timeout
 	is_shooting = false

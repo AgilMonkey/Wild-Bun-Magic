@@ -25,7 +25,7 @@ func start():
 func spawn_enemy():
 	var enemy_instance: Node2D = enemy_instance.instantiate()
 	enemy_instance.global_position = get_enemy_rand_position()
-	get_tree().root.call_deferred("add_child", enemy_instance)
+	get_tree().current_scene.call_deferred("add_child", enemy_instance)
 
 
 func get_enemy_rand_position() -> Vector2:
