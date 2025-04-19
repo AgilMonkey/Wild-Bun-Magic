@@ -1,0 +1,46 @@
+[gd_scene load_steps=13 format=3 uid="uid://vpq2j2mmkyfu"]
+
+[ext_resource type="Script" uid="uid://bac54mi18tq8" path="res://entities/managers/spawn_manager/SpawnManager.gd" id="1_mdm0b"]
+[ext_resource type="Script" uid="uid://bdpcnj3punf2n" path="res://entities/enemies/enemy_resource.gd" id="2_a16tu"]
+[ext_resource type="PackedScene" uid="uid://bl0spk6gymtey" path="res://entities/enemies/simple_enemy/Enemy.tscn" id="3_x77c3"]
+[ext_resource type="PackedScene" uid="uid://dx4d0juldt1ne" path="res://entities/enemies/shoot_enemy/ShootyEnemy.tscn" id="4_xv3w3"]
+[ext_resource type="PackedScene" uid="uid://cg0dt524l6uie" path="res://entities/enemies/shotgun_enemy/ShotgunEnemy.tscn" id="5_amdai"]
+[ext_resource type="PackedScene" uid="uid://bavom36i7jaq5" path="res://entities/enemies/circle_enemy/CircleEnemy.tscn" id="6_m76ep"]
+[ext_resource type="PackedScene" uid="uid://bhvisd3v0vmev" path="res://entities/enemies/spiral_enemy/SpiralEnemy.tscn" id="7_7e561"]
+
+[sub_resource type="Resource" id="Resource_ra8ls"]
+script = ExtResource("2_a16tu")
+enemy_instance = ExtResource("3_x77c3")
+chance = 200
+metadata/_custom_type_script = "uid://bdpcnj3punf2n"
+
+[sub_resource type="Resource" id="Resource_fbway"]
+script = ExtResource("2_a16tu")
+enemy_instance = ExtResource("4_xv3w3")
+chance = 80
+metadata/_custom_type_script = "uid://bdpcnj3punf2n"
+
+[sub_resource type="Resource" id="Resource_p77l7"]
+script = ExtResource("2_a16tu")
+enemy_instance = ExtResource("5_amdai")
+chance = 50
+metadata/_custom_type_script = "uid://bdpcnj3punf2n"
+
+[sub_resource type="Resource" id="Resource_iaos1"]
+script = ExtResource("2_a16tu")
+enemy_instance = ExtResource("6_m76ep")
+chance = 1
+metadata/_custom_type_script = "uid://bdpcnj3punf2n"
+
+[sub_resource type="Resource" id="Resource_iw1ec"]
+script = ExtResource("2_a16tu")
+enemy_instance = ExtResource("7_7e561")
+chance = 1
+metadata/_custom_type_script = "uid://bdpcnj3punf2n"
+
+[node name="SpawnManager" type="Node"]
+script = ExtResource("1_mdm0b")
+enemy_to_spawn = Array[ExtResource("2_a16tu")]([SubResource("Resource_ra8ls"), SubResource("Resource_fbway"), SubResource("Resource_p77l7"), SubResource("Resource_iaos1"), SubResource("Resource_iw1ec")])
+metadata/_custom_type_script = "uid://bac54mi18tq8"
+
+[node name="SpawnTimer" type="Timer" parent="."]
