@@ -5,6 +5,7 @@ extends Node2D
 var mouse_position: Vector2
 
 @onready var cur_spell: Spell = $SpellCastPoint
+@onready var staff_anim_player: AnimationPlayer = $StaffAnimationPlayer
 
 
 func _ready() -> void:
@@ -16,6 +17,8 @@ func _process(_delta: float) -> void:
 	look_at(mouse_position)
 	
 	if Input.is_action_just_pressed("shoot"):
+		if not cur_spell.is_shooting:
+			staff_anim_player.play("shoot")
 		cur_spell.shoot(self)
 		
 		if cur_spell.ammo <= 0:

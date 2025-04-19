@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dhl552xt6p4c1"]
+[gd_scene load_steps=23 format=3 uid="uid://dhl552xt6p4c1"]
 
 [ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/logics/player.gd" id="1_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://b0sh4nnlonsj8" path="res://entities/player/assets/player2_2.png" id="2_a1qjk"]
@@ -10,12 +10,102 @@
 [ext_resource type="Texture2D" uid="uid://carwpcdxmobmf" path="res://entities/player/assets/tongkat.png" id="7_7thud"]
 [ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="8_26q78"]
 [ext_resource type="Script" uid="uid://c3pbprpuaguim" path="res://entities/player/logics/player_ui_stuff.gd" id="9_bectd"]
-[ext_resource type="Script" uid="uid://b6x84glu53ptq" path="res://commons/controllers/character_body_move_stuff.gd" id="10_wvtmh"]
 [ext_resource type="Script" uid="uid://cs1vxy5t8bgst" path="res://entities/player/logics/player_animation.gd" id="12_a1qjk"]
 [ext_resource type="Texture2D" uid="uid://dgy2q30nc5x1e" path="res://entities/player/assets/player2.png" id="13_j3ovn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
 size = Vector2(35, 95.5)
+
+[sub_resource type="Animation" id="Animation_gx6sm"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpritePivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpritePivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yqrof"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpritePivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpritePivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3wlsy"]
+resource_name = "shoot"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpritePivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-21, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpritePivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5, -2),
+"update": 0,
+"values": [0.0, -0.277187, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yqrof"]
+_data = {
+&"RESET": SubResource("Animation_yqrof"),
+&"idle": SubResource("Animation_gx6sm"),
+&"shoot": SubResource("Animation_3wlsy")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26q78"]
 radius = 16.0
@@ -128,6 +218,7 @@ script = ExtResource("3_gmlin")
 all_spells = Array[GDScript]([ExtResource("4_bls4j"), ExtResource("5_8fjmc")])
 
 [node name="SpritePivot" type="Node2D" parent="PlayerStaff"]
+metadata/_edit_group_ = true
 
 [node name="WeaponSprite" type="Sprite2D" parent="PlayerStaff/SpritePivot"]
 position = Vector2(-33, 1.19209e-07)
@@ -138,6 +229,11 @@ offset = Vector2(212.619, -4.52381)
 [node name="SpellCastPoint" type="Node2D" parent="PlayerStaff"]
 position = Vector2(64, 0)
 script = ExtResource("4_bls4j")
+
+[node name="StaffAnimationPlayer" type="AnimationPlayer" parent="PlayerStaff"]
+libraries = {
+&"": SubResource("AnimationLibrary_yqrof")
+}
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("6_8fjmc")
@@ -157,9 +253,6 @@ debug_color = Color(0, 0.643416, 0.300425, 0.42)
 [node name="PlayerUIStuff" type="Node" parent="." node_paths=PackedStringArray("health")]
 script = ExtResource("9_bectd")
 health = NodePath("../HealthComponent")
-
-[node name="CharacterBodyMoveStuff" type="Node" parent="."]
-script = ExtResource("10_wvtmh")
 
 [node name="PlayerAnimation" type="Node" parent="." node_paths=PackedStringArray("player_staff", "player_sprite", "animation_player")]
 script = ExtResource("12_a1qjk")

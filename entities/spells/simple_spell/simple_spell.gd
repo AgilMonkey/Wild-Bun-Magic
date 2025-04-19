@@ -20,6 +20,7 @@ func shoot(_cur_node: Node2D):
 	ammo -= 1
 	
 	var bullet: Bullet = bullet_scene.instantiate()
+	bullet.damage = damage
 	bullet.global_position = global_position
 	bullet.velocity = global_transform.x * speed
 	get_tree().root.add_child(bullet)
