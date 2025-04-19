@@ -1,5 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://dhl552xt6p4c1"]
+[gd_scene load_steps=29 format=3 uid="uid://dhl552xt6p4c1"]
 
+[ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/logics/player.gd" id="1_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://b0sh4nnlonsj8" path="res://entities/player/assets/player2_2.png" id="2_a1qjk"]
 [ext_resource type="Script" uid="uid://y04u7tfbluw2" path="res://entities/player/logics/player_movement.gd" id="2_dovo2"]
@@ -11,11 +12,16 @@
 [ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="8_26q78"]
 [ext_resource type="Script" uid="uid://c4b8o7lehvr46" path="res://entities/spells/machine_gun_spell/machine_gun_spell.gd" id="8_j3ovn"]
 [ext_resource type="Script" uid="uid://c3pbprpuaguim" path="res://entities/player/logics/player_ui_stuff.gd" id="9_bectd"]
+[ext_resource type="Script" uid="uid://cpwbvaa5fkv6k" path="res://entities/spells/laser_spell/laser.gd" id="9_gx6sm"]
+[ext_resource type="Script" uid="uid://c83csyrq5d50u" path="res://entities/spells/laser_spell/laser_spell.gd" id="9_yqrof"]
 [ext_resource type="Script" uid="uid://cs1vxy5t8bgst" path="res://entities/player/logics/player_animation.gd" id="12_a1qjk"]
 [ext_resource type="Texture2D" uid="uid://dgy2q30nc5x1e" path="res://entities/player/assets/player2.png" id="13_j3ovn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
 size = Vector2(35, 95.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3ovn"]
+size = Vector2(1522, 20)
 
 [sub_resource type="Animation" id="Animation_yqrof"]
 length = 0.001
@@ -42,6 +48,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpritePivot/WeaponSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-33, 1.19209e-07)]
 }
 
 [sub_resource type="Animation" id="Animation_gx6sm"]
@@ -101,9 +119,28 @@ tracks/1/keys = {
 "values": [0.0, -0.277187, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_b2kln"]
+resource_name = "hold"
+length = 0.15
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpritePivot/WeaponSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-33, 1.19209e-07), Vector2(-33, -4), Vector2(-33, 4), Vector2(-33, 1.19209e-07)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yqrof"]
 _data = {
 &"RESET": SubResource("Animation_yqrof"),
+&"hold": SubResource("Animation_b2kln"),
 &"idle": SubResource("Animation_gx6sm"),
 &"shoot": SubResource("Animation_3wlsy")
 }
@@ -219,7 +256,7 @@ player_hit_col = NodePath("../HitboxComponent/CollisionShape2D")
 
 [node name="PlayerStaff" type="Node2D" parent="."]
 script = ExtResource("3_gmlin")
-all_spells = Array[GDScript]([ExtResource("8_j3ovn"), ExtResource("4_bls4j"), ExtResource("5_8fjmc")])
+all_spells = Array[GDScript]([ExtResource("4_bls4j"), ExtResource("5_8fjmc"), ExtResource("8_j3ovn"), ExtResource("9_yqrof")])
 
 [node name="SpritePivot" type="Node2D" parent="PlayerStaff"]
 metadata/_edit_group_ = true
@@ -233,6 +270,21 @@ offset = Vector2(212.619, -4.52381)
 [node name="SpellCastPoint" type="Node2D" parent="PlayerStaff"]
 position = Vector2(64, 0)
 script = ExtResource("4_bls4j")
+
+[node name="Laser" type="Area2D" parent="PlayerStaff/SpellCastPoint"]
+process_mode = 4
+visible = false
+collision_mask = 3
+script = ExtResource("9_gx6sm")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerStaff/SpellCastPoint/Laser"]
+position = Vector2(746.5, 0)
+scale = Vector2(11.8047, 0.140625)
+texture = ExtResource("1_8afob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerStaff/SpellCastPoint/Laser"]
+position = Vector2(751, 0)
+shape = SubResource("RectangleShape2D_j3ovn")
 
 [node name="StaffAnimationPlayer" type="AnimationPlayer" parent="PlayerStaff"]
 libraries = {
@@ -269,4 +321,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_j3ovn")
 }
 
+[connection signal="area_entered" from="PlayerStaff/SpellCastPoint/Laser" to="PlayerStaff/SpellCastPoint/Laser" method="_on_area_entered"]
+[connection signal="area_exited" from="PlayerStaff/SpellCastPoint/Laser" to="PlayerStaff/SpellCastPoint/Laser" method="_on_area_exited"]
 [connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]

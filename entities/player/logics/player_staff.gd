@@ -10,6 +10,7 @@ var mouse_position: Vector2
 
 func _ready() -> void:
 	change_spell()
+	#GlobalUi.cur_spell = cur_spell
 	
 	cur_spell.spell_casted.connect(func ():
 		staff_anim_player.stop()
