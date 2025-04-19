@@ -3,7 +3,7 @@ extends Node
 
 
 @export var player: CharacterBody2D
-@export var enemy: PackedScene
+@export var enemy_instance: PackedScene
 @export var spawn_min_range: int = 750  # From player
 @export var spawn_max_range: int = 1200
 @export var spawn_min_time: float = 0.9
@@ -22,7 +22,7 @@ func start():
 
 
 func spawn_enemy():
-	var enemy_instance: Node2D = enemy.instantiate()
+	var enemy_instance: Node2D = enemy_instance.instantiate()
 	enemy_instance.global_position = get_enemy_rand_position()
 	get_tree().root.call_deferred("add_child", enemy_instance)
 

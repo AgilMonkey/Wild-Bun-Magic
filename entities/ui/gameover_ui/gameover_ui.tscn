@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2mjbspvxsudv"]
+
+[ext_resource type="Script" uid="uid://dv6qou3y7bb13" path="res://entities/ui/gameover_ui/gameover_ui.gd" id="1_wouji"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wqytr"]
+font_size = 60
+
+[node name="GameoverUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wouji")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -135.0
+offset_right = 207.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="RestartLabel" type="Label" parent="PanelContainer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_wqytr")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="PanelContainer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="PanelContainer/Control/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_right = 144.0
+offset_bottom = 96.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Restart Game"
+
+[connection signal="button_down" from="PanelContainer/Control/VBoxContainer/Control/RestartButton" to="." method="_on_restart_button_button_down"]
