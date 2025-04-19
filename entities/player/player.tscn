@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhl552xt6p4c1"]
+[gd_scene load_steps=13 format=3 uid="uid://dhl552xt6p4c1"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/player.gd" id="1_qiwj3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ctvcfg16g1pkt" path="res://commons/health/health_component.gd" id="6_8fjmc"]
 [ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="8_26q78"]
 [ext_resource type="Script" uid="uid://c3pbprpuaguim" path="res://entities/player/player_ui_stuff.gd" id="9_bectd"]
+[ext_resource type="Script" uid="uid://b6x84glu53ptq" path="res://commons/controllers/character_body_move_stuff.gd" id="10_wvtmh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
 size = Vector2(48, 105)
@@ -68,5 +69,8 @@ debug_color = Color(0, 0.643416, 0.300425, 0.42)
 [node name="PlayerUIStuff" type="Node" parent="." node_paths=PackedStringArray("health")]
 script = ExtResource("9_bectd")
 health = NodePath("../HealthComponent")
+
+[node name="CharacterBodyMoveStuff" type="Node" parent="."]
+script = ExtResource("10_wvtmh")
 
 [connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
