@@ -86,5 +86,6 @@ metadata/_custom_type_script = "uid://ctvcfg16g1pkt"
 [node name="ShootAtPlayerSpiral" type="Node2D" parent="."]
 position = Vector2(-40, -51)
 script = ExtResource("11_ag7xq")
+shoot_timer = 0.5
 
 [connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
