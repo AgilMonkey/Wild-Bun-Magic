@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dhl552xt6p4c1"]
+[gd_scene load_steps=30 format=3 uid="uid://dhl552xt6p4c1"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/logics/player.gd" id="1_qiwj3"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://c3pbprpuaguim" path="res://entities/player/logics/player_ui_stuff.gd" id="9_bectd"]
 [ext_resource type="Script" uid="uid://cpwbvaa5fkv6k" path="res://entities/spells/laser_spell/laser.gd" id="9_gx6sm"]
 [ext_resource type="Script" uid="uid://c83csyrq5d50u" path="res://entities/spells/laser_spell/laser_spell.gd" id="9_yqrof"]
+[ext_resource type="Script" uid="uid://c0gfxoe5yjjlu" path="res://entities/spells/duck_spell/duck_spell.gd" id="10_3wlsy"]
 [ext_resource type="Script" uid="uid://cs1vxy5t8bgst" path="res://entities/player/logics/player_animation.gd" id="12_a1qjk"]
 [ext_resource type="Texture2D" uid="uid://dgy2q30nc5x1e" path="res://entities/player/assets/player2.png" id="13_j3ovn"]
 
@@ -256,7 +257,7 @@ player_hit_col = NodePath("../HitboxComponent/CollisionShape2D")
 
 [node name="PlayerStaff" type="Node2D" parent="."]
 script = ExtResource("3_gmlin")
-all_spells = Array[GDScript]([ExtResource("4_bls4j"), ExtResource("5_8fjmc"), ExtResource("8_j3ovn"), ExtResource("9_yqrof")])
+all_spells = Array[GDScript]([ExtResource("4_bls4j"), ExtResource("5_8fjmc"), ExtResource("8_j3ovn"), ExtResource("9_yqrof"), ExtResource("10_3wlsy")])
 
 [node name="SpritePivot" type="Node2D" parent="PlayerStaff"]
 metadata/_edit_group_ = true
@@ -269,7 +270,7 @@ offset = Vector2(212.619, -4.52381)
 
 [node name="SpellCastPoint" type="Node2D" parent="PlayerStaff"]
 position = Vector2(64, 0)
-script = ExtResource("4_bls4j")
+script = ExtResource("10_3wlsy")
 
 [node name="Laser" type="Area2D" parent="PlayerStaff/SpellCastPoint"]
 process_mode = 4
