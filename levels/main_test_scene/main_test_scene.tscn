@@ -16,7 +16,7 @@
 [sub_resource type="Resource" id="Resource_ra8ls"]
 script = ExtResource("8_y6r6k")
 enemy_instance = ExtResource("6_k73vk")
-chance = 50
+chance = 80
 metadata/_custom_type_script = "uid://bdpcnj3punf2n"
 
 [sub_resource type="Resource" id="Resource_fbway"]

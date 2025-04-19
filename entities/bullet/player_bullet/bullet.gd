@@ -7,7 +7,7 @@ var velocity: Vector2
 
 
 func _ready() -> void:
-	await get_tree().create_timer(20.0)
+	await get_tree().create_timer(20.0).timeout
 	call_deferred("queue_free")
 
 

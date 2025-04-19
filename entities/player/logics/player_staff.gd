@@ -9,7 +9,12 @@ var mouse_position: Vector2
 
 
 func _ready() -> void:
-	GlobalUi.cur_spell = cur_spell
+	change_spell()
+	
+	cur_spell.spell_casted.connect(func ():
+		staff_anim_player.stop()
+		staff_anim_player.play("shoot")
+		)
 
 
 func _process(_delta: float) -> void:
@@ -20,9 +25,12 @@ func _process(_delta: float) -> void:
 		if not cur_spell.is_shooting:
 			staff_anim_player.play("shoot")
 		cur_spell.shoot(self)
+		cur_spell.input_holded = true
 		
 		if cur_spell.ammo <= 0:
 			change_spell()
+	elif Input.is_action_just_released("shoot"):
+		cur_spell.input_holded = false
 
 
 func change_spell():
@@ -30,5 +38,12 @@ func change_spell():
 	all_spells_no_this.erase($SpellCastPoint.get_script())
 	var script = all_spells_no_this.pick_random()
 	$SpellCastPoint.set_script(script)
+	$SpellCastPoint.set_process(false)
+	$SpellCastPoint.set_process(true)
 	
 	GlobalUi.cur_spell = cur_spell
+	
+	cur_spell.spell_casted.connect(func ():
+		staff_anim_player.stop()
+		staff_anim_player.play("shoot")
+		)
