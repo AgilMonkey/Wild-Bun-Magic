@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://bl0spk6gymtey"]
 
-[ext_resource type="Script" uid="uid://dhopvrh0xvdq4" path="res://entities/enemies/enemy.gd" id="1_iplvi"]
+[ext_resource type="Script" uid="uid://dhopvrh0xvdq4" path="res://entities/enemies/simple_enemy/enemy.gd" id="1_iplvi"]
 [ext_resource type="PackedScene" uid="uid://dbb54nr1beapg" path="res://entities/health_drop/health_drop.tscn" id="2_kg1dj"]
 [ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="2_paah2"]
-[ext_resource type="Script" uid="uid://bfgcawdmt8vox" path="res://entities/enemies/follow_player.gd" id="3_82qr8"]
+[ext_resource type="Script" uid="uid://bfgcawdmt8vox" path="res://entities/enemies/simple_enemy/follow_player.gd" id="3_82qr8"]
 [ext_resource type="Texture2D" uid="uid://cph0nn63lko2v" path="res://entities/enemies/assets/enemy2.png" id="3_oxdrg"]
-[ext_resource type="Script" uid="uid://cl5g6pwsy7x6j" path="res://entities/enemies/simple_attacking.gd" id="4_rfvys"]
+[ext_resource type="Script" uid="uid://cl5g6pwsy7x6j" path="res://entities/enemies/simple_enemy/simple_attacking.gd" id="4_rfvys"]
 [ext_resource type="Script" uid="uid://ctvcfg16g1pkt" path="res://commons/health/health_component.gd" id="5_i8idp"]
 [ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="6_ae7xc"]
-[ext_resource type="Script" uid="uid://ck82pbmrvnc4n" path="res://entities/enemies/enemy_animation.gd" id="9_oxdrg"]
+[ext_resource type="Script" uid="uid://ck82pbmrvnc4n" path="res://entities/enemies/simple_enemy/enemy_animation.gd" id="9_oxdrg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oxdrg"]
 radius = 18.0

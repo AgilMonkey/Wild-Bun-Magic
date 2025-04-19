@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cna0e7eihip8f"]
 
-[ext_resource type="Script" uid="uid://sb1pljjtsgfv" path="res://entities/bullet/bullet.gd" id="1_2kyv7"]
+[ext_resource type="Script" uid="uid://sb1pljjtsgfv" path="res://entities/bullet/player_bullet/bullet.gd" id="1_2kyv7"]
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_78c8h"]
 [ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="3_5h0jh"]
 

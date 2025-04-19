@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlwoes46yhec3"]
+
+[ext_resource type="Script" uid="uid://w21pbl84kcga" path="res://entities/bullet/enemy_bullet/enemy_bullet.gd" id="1_di1mh"]
+[ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="2_q556o"]
+[ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="3_pxepx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5h0jh"]
+radius = 26.0192
+
+[node name="EnemyBullet" type="Node2D"]
+script = ExtResource("1_di1mh")
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0.0833335, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_q556o")
+
+[node name="AttackboxComponent" parent="." instance=ExtResource("3_pxepx")]
+is_damage_by_itself = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]
+shape = SubResource("CircleShape2D_5h0jh")
+debug_color = Color(0.995878, 0, 0.197325, 0.42)
+
+[connection signal="on_hit" from="AttackboxComponent" to="." method="_on_attackbox_component_on_hit"]

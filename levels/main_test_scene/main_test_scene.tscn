@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dklbwgr08tit0" path="res://entities/ui/player_ui/player_ui.tscn" id="4_o4x35"]
 [ext_resource type="PackedScene" uid="uid://c2mjbspvxsudv" path="res://entities/ui/gameover_ui/gameover_ui.tscn" id="5_0cjx8"]
 [ext_resource type="Script" uid="uid://bac54mi18tq8" path="res://entities/managers/spawn_manager/SpawnManager.gd" id="5_1itg7"]
-[ext_resource type="PackedScene" uid="uid://bl0spk6gymtey" path="res://entities/enemies/Enemy.tscn" id="6_k73vk"]
+[ext_resource type="PackedScene" uid="uid://dx4d0juldt1ne" path="res://entities/enemies/shoot_enemy/ShootyEnemy.tscn" id="7_0cjx8"]
 
 [node name="main_test_scene" type="Node2D"]
 y_sort_enabled = true
@@ -31,7 +31,7 @@ visible = false
 [node name="SpawnManager" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("5_1itg7")
 player = NodePath("../Player")
-enemy_instance = ExtResource("6_k73vk")
+enemy_instance = ExtResource("7_0cjx8")
 metadata/_custom_type_script = "uid://bac54mi18tq8"
 
 [node name="SpawnTimer" type="Timer" parent="SpawnManager"]

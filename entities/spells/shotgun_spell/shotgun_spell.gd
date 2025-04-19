@@ -13,7 +13,7 @@ func _init() -> void:
 	damage = 25
 	rate_of_fire = 1.0
 	
-	bullet_scene = preload("res://entities/bullet/bullet.tscn")
+	bullet_scene = preload("res://entities/bullet/player_bullet/bullet.tscn")
 
 
 func shoot(_cur_node: Node2D):

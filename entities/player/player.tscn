@@ -16,8 +16,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
 size = Vector2(35, 95.5)
 
-[sub_resource type="Animation" id="Animation_gx6sm"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_yqrof"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -44,7 +43,8 @@ tracks/1/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_yqrof"]
+[sub_resource type="Animation" id="Animation_gx6sm"]
+resource_name = "idle"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -111,23 +111,6 @@ _data = {
 radius = 16.0
 height = 104.0
 
-[sub_resource type="Animation" id="Animation_a1qjk"]
-resource_name = "idle"
-length = 0.001
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_a1qjk")]
-}
-
 [sub_resource type="Animation" id="Animation_j3ovn"]
 length = 0.001
 tracks/0/type = "value"
@@ -153,6 +136,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-2, -13)]
+}
+
+[sub_resource type="Animation" id="Animation_a1qjk"]
+resource_name = "idle"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_a1qjk")]
 }
 
 [sub_resource type="Animation" id="Animation_afbqv"]
