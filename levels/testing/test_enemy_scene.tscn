@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw6haaor00i"]
+
+[ext_resource type="PackedScene" uid="uid://dhl552xt6p4c1" path="res://entities/player/player.tscn" id="1_d7c6d"]
+[ext_resource type="PackedScene" uid="uid://bhvisd3v0vmev" path="res://entities/enemies/spiral_enemy/SpiralEnemy.tscn" id="2_ryy87"]
+
+[node name="TestEnemyScene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_d7c6d")]
+
+[node name="w" parent="." instance=ExtResource("2_ryy87")]
+position = Vector2(970, 166)

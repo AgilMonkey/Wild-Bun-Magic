@@ -1,0 +1,90 @@
+[gd_scene load_steps=15 format=3 uid="uid://bhvisd3v0vmev"]
+
+[ext_resource type="Script" uid="uid://dhopvrh0xvdq4" path="res://entities/enemies/simple_enemy/enemy.gd" id="1_4h1ky"]
+[ext_resource type="PackedScene" uid="uid://dbb54nr1beapg" path="res://entities/health_drop/health_drop.tscn" id="2_58sm2"]
+[ext_resource type="Texture2D" uid="uid://carwpcdxmobmf" path="res://entities/player/assets/tongkat.png" id="3_tbuhd"]
+[ext_resource type="Texture2D" uid="uid://cph0nn63lko2v" path="res://entities/enemies/assets/enemy2.png" id="4_2bvry"]
+[ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="5_s3iah"]
+[ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="6_ljpnp"]
+[ext_resource type="Script" uid="uid://ck82pbmrvnc4n" path="res://entities/enemies/simple_enemy/enemy_animation.gd" id="7_ordk5"]
+[ext_resource type="Script" uid="uid://bfgcawdmt8vox" path="res://entities/enemies/simple_enemy/follow_player.gd" id="8_ihhd1"]
+[ext_resource type="Script" uid="uid://cl5g6pwsy7x6j" path="res://entities/enemies/simple_enemy/simple_attacking.gd" id="9_2vhbl"]
+[ext_resource type="Script" uid="uid://ctvcfg16g1pkt" path="res://commons/health/health_component.gd" id="10_b3jbn"]
+[ext_resource type="Script" uid="uid://bjdp2d3cphmoq" path="res://entities/enemies/spiral_enemy/shoot_at_player_spiral.gd" id="11_ag7xq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oxdrg"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_paah2"]
+radius = 40.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ae7xc"]
+size = Vector2(64, 64)
+
+[node name="SpiralEnemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_4h1ky")
+health_pickup_instance = ExtResource("2_58sm2")
+chance_to_drop_health = 0.05
+
+[node name="WeaponSprite" type="Sprite2D" parent="."]
+position = Vector2(-16, 8)
+rotation = -1.96538
+scale = Vector2(0.161219, 0.16122)
+texture = ExtResource("3_tbuhd")
+offset = Vector2(212.619, -4.52381)
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.0735, 0.0735)
+texture = ExtResource("4_2bvry")
+offset = Vector2(10.2041, -112.245)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 5)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_oxdrg")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="AttackboxComponent" parent="." instance=ExtResource("5_s3iah")]
+damage = 10
+is_damage_by_itself = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackboxComponent"]
+shape = SubResource("CircleShape2D_paah2")
+debug_color = Color(0.790018, 0.13228, 0.272505, 0.42)
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("6_ljpnp")
+health = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://d2ssuuarj6kcv"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_ae7xc")
+debug_color = Color(0.0417786, 0.650393, 0, 0.42)
+
+[node name="EnemyAnimation" type="Node2D" parent="." node_paths=PackedStringArray("enemy_sprite")]
+script = ExtResource("7_ordk5")
+enemy_sprite = NodePath("../EnemySprite")
+
+[node name="FollowPlayer" type="Node" parent="."]
+script = ExtResource("8_ihhd1")
+speed = 90
+
+[node name="SimpleAttacking" type="Node" parent="." node_paths=PackedStringArray("attackbox", "attackbox_col")]
+script = ExtResource("9_2vhbl")
+attackbox = NodePath("../AttackboxComponent")
+attackbox_col = NodePath("../AttackboxComponent/CollisionShape2D")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("10_b3jbn")
+metadata/_custom_type_script = "uid://ctvcfg16g1pkt"
+
+[node name="ShootAtPlayerSpiral" type="Node2D" parent="."]
+position = Vector2(-40, -51)
+script = ExtResource("11_ag7xq")
+
+[connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
