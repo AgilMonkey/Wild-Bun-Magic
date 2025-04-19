@@ -3,6 +3,7 @@
 extends Spell
 
 
+var bullet_sound: AudioStream
 var bullet_scene
 
 
@@ -14,6 +15,7 @@ func _init() -> void:
 	rate_of_fire = 0.2
 	
 	bullet_scene = preload("res://entities/bullet/player_bullet/bullet.tscn")
+	bullet_sound = preload("res://assets/shoot1.wav")
 
 
 func _process(delta: float) -> void:
@@ -22,6 +24,7 @@ func _process(delta: float) -> void:
 		if ammo <= 0: return
 		is_shooting = true
 		ammo -= 1
+		
 		var bullet: Bullet = bullet_scene.instantiate()
 		bullet.damage = damage
 		bullet.global_position = global_position
@@ -29,6 +32,9 @@ func _process(delta: float) -> void:
 		bullet.velocity = bullet.global_transform.x * speed
 		get_tree().current_scene.add_child(bullet)
 		spell_casted.emit()
+		
+		SoundManager.play_sound(bullet_sound)
+		
 		await get_tree().create_timer(rate_of_fire).timeout
 		is_shooting = false
 

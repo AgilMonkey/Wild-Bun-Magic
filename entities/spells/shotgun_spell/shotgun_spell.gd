@@ -3,6 +3,7 @@
 extends Spell
 
 
+var bullet_sound: AudioStream
 var bullet_scene
 
 
@@ -14,6 +15,7 @@ func _init() -> void:
 	rate_of_fire = 1.0
 	
 	bullet_scene = preload("res://entities/bullet/player_bullet/bullet.tscn")
+	bullet_sound = preload("res://assets/shoot2.wav")
 
 
 func shoot(_cur_node: Node2D):
@@ -31,6 +33,9 @@ func shoot(_cur_node: Node2D):
 		bullet.global_rotation = global_rotation
 		bullet.rotate(deg_to_rad(start_rot))
 		bullet.velocity = bullet.global_transform.x * speed
+		
+		SoundManager.play_sound(bullet_sound)
+		
 		get_tree().current_scene.add_child(bullet)
 		start_rot += 20
 	

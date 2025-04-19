@@ -4,6 +4,7 @@ extends Node
 
 signal health_changed(val: int)
 signal health_reached_zero
+signal hurted
 
 @export var max_health: int = 100
 var cur_health: int
@@ -30,3 +31,4 @@ func damage(val):
 		health_reached_zero.emit()
 	
 	health_changed.emit(cur_health)
+	hurted.emit()

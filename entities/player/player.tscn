@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://dhl552xt6p4c1"]
+[gd_scene load_steps=31 format=3 uid="uid://dhl552xt6p4c1"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/logics/player.gd" id="1_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://b0sh4nnlonsj8" path="res://entities/player/assets/player2_2.png" id="2_a1qjk"]
+[ext_resource type="AudioStream" uid="uid://bnkle7v31lqq7" path="res://assets/hurt.wav" id="2_b2kln"]
 [ext_resource type="Script" uid="uid://y04u7tfbluw2" path="res://entities/player/logics/player_movement.gd" id="2_dovo2"]
 [ext_resource type="Script" uid="uid://d2xqhqa7tnsor" path="res://entities/player/logics/player_staff.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://ncbf2pf4v4m4" path="res://entities/spells/simple_spell/simple_spell.gd" id="4_bls4j"]
@@ -234,6 +235,7 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_qiwj3")
+hurt_sound = ExtResource("2_b2kln")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
@@ -270,7 +272,7 @@ offset = Vector2(212.619, -4.52381)
 
 [node name="SpellCastPoint" type="Node2D" parent="PlayerStaff"]
 position = Vector2(64, 0)
-script = ExtResource("10_3wlsy")
+script = ExtResource("4_bls4j")
 
 [node name="Laser" type="Area2D" parent="PlayerStaff/SpellCastPoint"]
 process_mode = 4
@@ -317,11 +319,6 @@ player_staff = NodePath("../PlayerStaff")
 player_sprite = NodePath("../PlayerSprite")
 animation_player = NodePath("../AnimationPlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_j3ovn")
-}
-
 [node name="HealthPickuper" type="RigidBody2D" parent="." groups=["player"]]
 collision_layer = 4
 collision_mask = 0
@@ -333,6 +330,13 @@ position = Vector2(-1.5, 18.75)
 shape = SubResource("RectangleShape2D_8afob")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j3ovn")
+}
+
 [connection signal="area_entered" from="PlayerStaff/SpellCastPoint/Laser" to="PlayerStaff/SpellCastPoint/Laser" method="_on_area_entered"]
 [connection signal="area_exited" from="PlayerStaff/SpellCastPoint/Laser" to="PlayerStaff/SpellCastPoint/Laser" method="_on_area_exited"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
+[connection signal="hurted" from="HealthComponent" to="." method="_on_health_component_hurted"]
