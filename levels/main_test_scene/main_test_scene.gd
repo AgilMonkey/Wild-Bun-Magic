@@ -2,7 +2,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	pass
+	randomize()
 
 
 func _on_player_on_player_died() -> void:

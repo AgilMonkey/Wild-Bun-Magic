@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bl0spk6gymtey"]
+[gd_scene load_steps=12 format=3 uid="uid://bl0spk6gymtey"]
 
 [ext_resource type="Script" uid="uid://dhopvrh0xvdq4" path="res://entities/enemies/enemy.gd" id="1_iplvi"]
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_nwexf"]
+[ext_resource type="PackedScene" uid="uid://dbb54nr1beapg" path="res://entities/health_drop/health_drop.tscn" id="2_kg1dj"]
 [ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="2_paah2"]
 [ext_resource type="Script" uid="uid://bfgcawdmt8vox" path="res://entities/enemies/follow_player.gd" id="3_82qr8"]
 [ext_resource type="Script" uid="uid://cl5g6pwsy7x6j" path="res://entities/enemies/simple_attacking.gd" id="4_rfvys"]
@@ -20,6 +21,7 @@ size = Vector2(64, 64)
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 motion_mode = 1
 script = ExtResource("1_iplvi")
+health_pickup_instance = ExtResource("2_kg1dj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
