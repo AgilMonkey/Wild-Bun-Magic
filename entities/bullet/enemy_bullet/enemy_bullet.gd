@@ -6,6 +6,11 @@ extends Node2D
 var velocity: Vector2
 
 
+func _ready() -> void:
+	await get_tree().create_timer(20.0)
+	call_deferred("queue_free")
+
+
 func _physics_process(delta: float) -> void:
 	position += velocity * delta
 
