@@ -3,7 +3,7 @@ extends Node
 
 
 @export var player: CharacterBody2D
-@export var enemy_instance: PackedScene
+@export var enemy_to_spawn: Array[EnemyResource]
 @export var spawn_min_range: int = 750  # From player
 @export var spawn_max_range: int = 1200
 @export var spawn_min_time: float = 0.9
@@ -11,7 +11,6 @@ extends Node
 
 
 func _ready() -> void:
-	pass # WARNING DELETE ME LATER PLEASE
 	start()
 
 
@@ -23,9 +22,25 @@ func start():
 
 
 func spawn_enemy():
-	var enemy_instance: Node2D = enemy_instance.instantiate()
+	var enemy_instance: Node2D = get_random_enemy().instantiate()
 	enemy_instance.global_position = get_enemy_rand_position()
 	get_tree().current_scene.call_deferred("add_child", enemy_instance)
+
+
+func get_random_enemy() -> PackedScene:
+	var total_chance = 0
+	for n in enemy_to_spawn:
+		total_chance += n.chance
+	
+	var rand_num = randi_range(0, total_chance)
+	
+	var cumulative = 0
+	for enemy in enemy_to_spawn:
+		cumulative += enemy.chance
+		if rand_num <= cumulative:
+			return enemy.enemy_instance
+	
+	return null
 
 
 func get_enemy_rand_position() -> Vector2:

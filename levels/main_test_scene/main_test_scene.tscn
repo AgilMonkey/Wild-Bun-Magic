@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca8tn02iyeljw"]
+[gd_scene load_steps=12 format=3 uid="uid://ca8tn02iyeljw"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_0ppp4"]
 [ext_resource type="PackedScene" uid="uid://dhl552xt6p4c1" path="res://entities/player/player.tscn" id="1_db3qx"]
@@ -6,7 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://dklbwgr08tit0" path="res://entities/ui/player_ui/player_ui.tscn" id="4_o4x35"]
 [ext_resource type="PackedScene" uid="uid://c2mjbspvxsudv" path="res://entities/ui/gameover_ui/gameover_ui.tscn" id="5_0cjx8"]
 [ext_resource type="Script" uid="uid://bac54mi18tq8" path="res://entities/managers/spawn_manager/SpawnManager.gd" id="5_1itg7"]
+[ext_resource type="PackedScene" uid="uid://bl0spk6gymtey" path="res://entities/enemies/simple_enemy/Enemy.tscn" id="6_k73vk"]
 [ext_resource type="PackedScene" uid="uid://dx4d0juldt1ne" path="res://entities/enemies/shoot_enemy/ShootyEnemy.tscn" id="7_0cjx8"]
+[ext_resource type="Script" uid="uid://bdpcnj3punf2n" path="res://entities/enemies/enemy_resource.gd" id="8_y6r6k"]
+
+[sub_resource type="Resource" id="Resource_ra8ls"]
+script = ExtResource("8_y6r6k")
+enemy_instance = ExtResource("6_k73vk")
+chance = 50
+metadata/_custom_type_script = "uid://bdpcnj3punf2n"
+
+[sub_resource type="Resource" id="Resource_fbway"]
+script = ExtResource("8_y6r6k")
+enemy_instance = ExtResource("7_0cjx8")
+chance = 30
+metadata/_custom_type_script = "uid://bdpcnj3punf2n"
 
 [node name="main_test_scene" type="Node2D"]
 y_sort_enabled = true
@@ -31,7 +45,7 @@ visible = false
 [node name="SpawnManager" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("5_1itg7")
 player = NodePath("../Player")
-enemy_instance = ExtResource("7_0cjx8")
+enemy_to_spawn = Array[ExtResource("8_y6r6k")]([SubResource("Resource_ra8ls"), SubResource("Resource_fbway")])
 metadata/_custom_type_script = "uid://bac54mi18tq8"
 
 [node name="SpawnTimer" type="Timer" parent="SpawnManager"]
