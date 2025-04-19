@@ -63,6 +63,24 @@ tracks/2/keys = {
 "values": [Vector2(-33, 1.19209e-07)]
 }
 
+[sub_resource type="Animation" id="Animation_b2kln"]
+resource_name = "hold"
+length = 0.15
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpritePivot/WeaponSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-33, 1.19209e-07), Vector2(-33, -4), Vector2(-33, 4), Vector2(-33, 1.19209e-07)]
+}
+
 [sub_resource type="Animation" id="Animation_gx6sm"]
 resource_name = "idle"
 length = 0.001
@@ -118,24 +136,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.5, 0.5, -2),
 "update": 0,
 "values": [0.0, -0.277187, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_b2kln"]
-resource_name = "hold"
-length = 0.15
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpritePivot/WeaponSprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-33, 1.19209e-07), Vector2(-33, -4), Vector2(-33, 4), Vector2(-33, 1.19209e-07)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yqrof"]
@@ -321,6 +321,17 @@ animation_player = NodePath("../AnimationPlayer")
 libraries = {
 &"": SubResource("AnimationLibrary_j3ovn")
 }
+
+[node name="HealthPickuper" type="RigidBody2D" parent="." groups=["player"]]
+collision_layer = 4
+collision_mask = 0
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthPickuper"]
+position = Vector2(-1.5, 18.75)
+shape = SubResource("RectangleShape2D_8afob")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [connection signal="area_entered" from="PlayerStaff/SpellCastPoint/Laser" to="PlayerStaff/SpellCastPoint/Laser" method="_on_area_entered"]
 [connection signal="area_exited" from="PlayerStaff/SpellCastPoint/Laser" to="PlayerStaff/SpellCastPoint/Laser" method="_on_area_exited"]

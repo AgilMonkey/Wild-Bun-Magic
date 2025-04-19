@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ca8tn02iyeljw"]
+[gd_scene load_steps=8 format=3 uid="uid://ca8tn02iyeljw"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_0ppp4"]
 [ext_resource type="PackedScene" uid="uid://dhl552xt6p4c1" path="res://entities/player/player.tscn" id="1_db3qx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dklbwgr08tit0" path="res://entities/ui/player_ui/player_ui.tscn" id="4_o4x35"]
 [ext_resource type="PackedScene" uid="uid://c2mjbspvxsudv" path="res://entities/ui/gameover_ui/gameover_ui.tscn" id="5_0cjx8"]
 [ext_resource type="PackedScene" uid="uid://vpq2j2mmkyfu" path="res://entities/managers/spawn_manager/spawn_manager.tscn" id="6_k73vk"]
+[ext_resource type="PackedScene" uid="uid://dbb54nr1beapg" path="res://entities/health_drop/health_drop.tscn" id="8_y6r6k"]
 
 [node name="main_test_scene" type="Node2D"]
 y_sort_enabled = true
@@ -17,6 +18,9 @@ z_index = -10
 scale = Vector2(24.8906, 24.8906)
 texture = ExtResource("1_0ppp4")
 metadata/_edit_lock_ = true
+
+[node name="HealthDrop" parent="." instance=ExtResource("8_y6r6k")]
+position = Vector2(441, 203)
 
 [node name="Player" parent="." instance=ExtResource("1_db3qx")]
 
