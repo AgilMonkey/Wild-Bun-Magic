@@ -1,22 +1,24 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhl552xt6p4c1"]
+[gd_scene load_steps=15 format=3 uid="uid://dhl552xt6p4c1"]
 
-[ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_8afob"]
-[ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/player.gd" id="1_qiwj3"]
-[ext_resource type="Script" uid="uid://y04u7tfbluw2" path="res://entities/player/player_movement.gd" id="2_dovo2"]
-[ext_resource type="Script" uid="uid://d2xqhqa7tnsor" path="res://entities/player/player_staff.gd" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/logics/player.gd" id="1_qiwj3"]
+[ext_resource type="Texture2D" uid="uid://dt1lwxcvfm7h5" path="res://entities/player/assets/player.png" id="2_7thud"]
+[ext_resource type="Script" uid="uid://y04u7tfbluw2" path="res://entities/player/logics/player_movement.gd" id="2_dovo2"]
+[ext_resource type="Script" uid="uid://d2xqhqa7tnsor" path="res://entities/player/logics/player_staff.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://ncbf2pf4v4m4" path="res://entities/spells/simple_spell/simple_spell.gd" id="4_bls4j"]
 [ext_resource type="Script" uid="uid://ckiwrkpyugv3q" path="res://entities/spells/shotgun_spell/shotgun_spell.gd" id="5_8fjmc"]
 [ext_resource type="Script" uid="uid://ctvcfg16g1pkt" path="res://commons/health/health_component.gd" id="6_8fjmc"]
+[ext_resource type="Texture2D" uid="uid://carwpcdxmobmf" path="res://entities/player/assets/tongkat.png" id="7_7thud"]
 [ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="8_26q78"]
-[ext_resource type="Script" uid="uid://c3pbprpuaguim" path="res://entities/player/player_ui_stuff.gd" id="9_bectd"]
+[ext_resource type="Script" uid="uid://c3pbprpuaguim" path="res://entities/player/logics/player_ui_stuff.gd" id="9_bectd"]
 [ext_resource type="Script" uid="uid://b6x84glu53ptq" path="res://commons/controllers/character_body_move_stuff.gd" id="10_wvtmh"]
+[ext_resource type="Script" uid="uid://cs1vxy5t8bgst" path="res://entities/player/logics/player_animation.gd" id="12_a1qjk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
-size = Vector2(48, 105)
+size = Vector2(35, 95.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26q78"]
-radius = 26.0
-height = 116.0
+radius = 16.0
+height = 104.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
@@ -27,15 +29,15 @@ process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="Gfx" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 1)
-texture = ExtResource("1_8afob")
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+scale = Vector2(0.169444, 0.169444)
+texture = ExtResource("2_7thud")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11.5)
+position = Vector2(-1.5, 18.75)
 shape = SubResource("RectangleShape2D_8afob")
 debug_color = Color(0, 0.6, 0.701961, 0)
-metadata/_edit_lock_ = true
 
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("2_dovo2")
@@ -44,13 +46,16 @@ script = ExtResource("2_dovo2")
 script = ExtResource("3_gmlin")
 all_spells = Array[GDScript]([ExtResource("4_bls4j"), ExtResource("5_8fjmc")])
 
-[node name="WeaponSprite" type="Sprite2D" parent="PlayerStaff"]
-position = Vector2(48, 0)
-scale = Vector2(0.796875, 0.203125)
-texture = ExtResource("1_8afob")
+[node name="SpritePivot" type="Node2D" parent="PlayerStaff"]
+
+[node name="WeaponSprite" type="Sprite2D" parent="PlayerStaff/SpritePivot"]
+position = Vector2(-33, 1.19209e-07)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_7thud")
+offset = Vector2(212.619, -4.52381)
 
 [node name="SpellCastPoint" type="Node2D" parent="PlayerStaff"]
-position = Vector2(99, 0)
+position = Vector2(64, 0)
 script = ExtResource("4_bls4j")
 
 [node name="HealthComponent" type="Node" parent="."]
@@ -58,11 +63,13 @@ script = ExtResource("6_8fjmc")
 metadata/_custom_type_script = "uid://ctvcfg16g1pkt"
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+position = Vector2(0, 14)
 script = ExtResource("8_26q78")
 health = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://d2ssuuarj6kcv"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_26q78")
 debug_color = Color(0, 0.643416, 0.300425, 0.42)
 
@@ -72,5 +79,10 @@ health = NodePath("../HealthComponent")
 
 [node name="CharacterBodyMoveStuff" type="Node" parent="."]
 script = ExtResource("10_wvtmh")
+
+[node name="PlayerAnimation" type="Node" parent="." node_paths=PackedStringArray("player_staff", "player_sprite")]
+script = ExtResource("12_a1qjk")
+player_staff = NodePath("../PlayerStaff")
+player_sprite = NodePath("../PlayerSprite")
 
 [connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]

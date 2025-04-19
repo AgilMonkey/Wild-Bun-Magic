@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://bl0spk6gymtey"]
+[gd_scene load_steps=13 format=3 uid="uid://bl0spk6gymtey"]
 
 [ext_resource type="Script" uid="uid://dhopvrh0xvdq4" path="res://entities/enemies/enemy.gd" id="1_iplvi"]
-[ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_nwexf"]
 [ext_resource type="PackedScene" uid="uid://dbb54nr1beapg" path="res://entities/health_drop/health_drop.tscn" id="2_kg1dj"]
 [ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="2_paah2"]
 [ext_resource type="Script" uid="uid://bfgcawdmt8vox" path="res://entities/enemies/follow_player.gd" id="3_82qr8"]
+[ext_resource type="Texture2D" uid="uid://4ug6y6vsnpfm" path="res://entities/player/assets/enemy.png" id="3_kg1dj"]
 [ext_resource type="Script" uid="uid://cl5g6pwsy7x6j" path="res://entities/enemies/simple_attacking.gd" id="4_rfvys"]
 [ext_resource type="Script" uid="uid://ctvcfg16g1pkt" path="res://commons/health/health_component.gd" id="5_i8idp"]
 [ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="6_ae7xc"]
+[ext_resource type="Script" uid="uid://ck82pbmrvnc4n" path="res://entities/enemies/enemy_animation.gd" id="9_oxdrg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nwexf"]
 radius = 32.0
@@ -20,13 +21,16 @@ size = Vector2(64, 64)
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_iplvi")
 health_pickup_instance = ExtResource("2_kg1dj")
+chance_to_drop_health = 0.05
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_nwexf")
+[node name="EnemySprite" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("3_kg1dj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_nwexf")
@@ -61,5 +65,9 @@ metadata/_custom_type_script = "uid://d2ssuuarj6kcv"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("RectangleShape2D_ae7xc")
+
+[node name="EnemyAnimation" type="Node2D" parent="." node_paths=PackedStringArray("enemy_sprite")]
+script = ExtResource("9_oxdrg")
+enemy_sprite = NodePath("../EnemySprite")
 
 [connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
