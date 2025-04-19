@@ -11,6 +11,7 @@ extends Node
 
 
 func _ready() -> void:
+	pass # WARNING DELETE ME LATER PLEASE
 	start()
 
 
