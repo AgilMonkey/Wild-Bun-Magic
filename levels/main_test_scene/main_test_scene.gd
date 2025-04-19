@@ -7,6 +7,7 @@ func _ready() -> void:
 
 func _on_player_on_player_died() -> void:
 	$UI/GameoverUi.show()
+	$Player.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func _on_gameover_ui_restart_game() -> void:
