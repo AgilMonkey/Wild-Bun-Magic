@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c4jt1g0a3cha4"]
+
+[ext_resource type="Shader" uid="uid://boyv6ttt7bgoq" path="res://entities/enemies/simple_enemy/flash_white.gdshader" id="1_56ijr"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_56ijr")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
