@@ -1,5 +1,8 @@
 extends Node2D
 
+
+const ENEMY_SHOOT = preload("res://assets/enemy_shoot.wav")
+
 @export var bullet_damage := 10
 @export var shoot_timer := 2.0
 @export var bullet_speed := 400
@@ -26,5 +29,7 @@ func shoot():
 		bullet.velocity = bullet.global_transform.x * bullet_speed
 		get_tree().current_scene.add_child(bullet)
 		start_rot += PI * 2 / 10
+	
+	SoundManager.play_sound(ENEMY_SHOOT)
 	
 	shoot()
