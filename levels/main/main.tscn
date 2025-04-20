@@ -81,6 +81,15 @@ visible = false
 
 [node name="SpawnManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_k73vk")]
 player = NodePath("../Player")
+spawn_start_max_count = 15
+spawn_count_rate = 30.0
+spawn_min_range = 1000
+spawn_max_range = 1200
+spawn_min_time = 0.9
+spawn_max_time = 1.8
+spawn_maximum_min_time = 0.5
+spawn_reduction_timer = 120.0
+spawn_time_reduction = 0.1
 
 [node name="ScoreCounter" type="Node" parent="."]
 script = ExtResource("7_0cjx8")
