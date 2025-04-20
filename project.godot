@@ -21,6 +21,11 @@ config/icon="res://icon.svg"
 GlobalUi="*res://entities/globals/global_ui.gd"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
 
+[debug]
+
+gdscript/warnings/unused_parameter=0
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=1980
