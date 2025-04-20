@@ -13,9 +13,11 @@ func _init() -> void:
 	ammo = 100
 	damage = 10
 	rate_of_fire = 0.04
-	
-	laser_sound = get_node("LaserSound")
 
+
+func _ready():
+	laser_sound = get_node("LaserSound")
+	spell_changed.connect(stop_laser)
 
 
 func _process(delta: float) -> void:
@@ -34,10 +36,14 @@ func _process(delta: float) -> void:
 		await get_tree().create_timer(rate_of_fire).timeout
 		is_shooting = false
 	else:
-		laser.hide()
-		laser.process_mode = Node.PROCESS_MODE_DISABLED
-		
-		laser_sound.end_sound()
+		stop_laser()
+
+
+func stop_laser():
+	laser.hide()
+	laser.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	laser_sound.end_sound()
 
 
 func shoot(_cur_node):

@@ -2,7 +2,8 @@ class_name Spell
 extends Node2D
 
 
-signal spell_casted 
+signal spell_casted
+signal spell_changed
 
 var spell_name := "Name Please"
 var description := "Desc Please"

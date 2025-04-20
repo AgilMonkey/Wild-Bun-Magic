@@ -276,7 +276,7 @@ offset = Vector2(212.619, -4.52381)
 
 [node name="SpellCastPoint" type="Node2D" parent="PlayerStaff"]
 position = Vector2(64, 0)
-script = ExtResource("4_bls4j")
+script = ExtResource("9_yqrof")
 
 [node name="Laser" type="Area2D" parent="PlayerStaff/SpellCastPoint"]
 process_mode = 4
