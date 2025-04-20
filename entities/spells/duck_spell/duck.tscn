@@ -1,18 +1,140 @@
-[gd_scene load_steps=4 format=3 uid="uid://cph6rwdhj4e32"]
+[gd_scene load_steps=10 format=3 uid="uid://cph6rwdhj4e32"]
 
-[ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_37j0u"]
 [ext_resource type="Script" uid="uid://cltd5ey1s0gp6" path="res://entities/spells/duck_spell/duck.gd" id="1_glhq0"]
+[ext_resource type="Texture2D" uid="uid://bjaag3ev8aovh" path="res://assets/duck1.png" id="2_glhq0"]
+[ext_resource type="Texture2D" uid="uid://cxbiqw5aukq2" path="res://assets/duck2.png" id="3_pdmia"]
+[ext_resource type="Texture2D" uid="uid://bjqc3bxcobri1" path="res://assets/smoke.png" id="4_ml2en"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37j0u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_glhq0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pdmia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_glhq0")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37j0u"]
+
+[sub_resource type="Animation" id="Animation_ml2en"]
+resource_name = "Smoke"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smoke:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Smoke:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.001, 0.001), Vector2(0.21, 0.21), Vector2(0.001, 0.001)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DuckSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_3o34f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smoke:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Smoke:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.001, 0.001)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DuckSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3o34f"]
+_data = {
+&"RESET": SubResource("Animation_3o34f"),
+&"Smoke": SubResource("Animation_ml2en")
+}
 
 [node name="Duck" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_glhq0")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.625, 0.625)
-texture = ExtResource("1_37j0u")
+[node name="DuckSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.19211, 0.19211)
+sprite_frames = SubResource("SpriteFrames_37j0u")
+animation = &"walk"
+frame_progress = 0.368069
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_37j0u")
+
+[node name="Smoke" type="Sprite2D" parent="."]
+position = Vector2(0, 40)
+scale = Vector2(0.001, 0.001)
+texture = ExtResource("4_ml2en")
+offset = Vector2(0, -402.778)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3o34f")
+}
