@@ -34,10 +34,11 @@ func shoot(_cur_node: Node2D):
 		bullet.rotate(deg_to_rad(start_rot))
 		bullet.velocity = bullet.global_transform.x * speed
 		
-		SoundManager.play_sound(bullet_sound)
 		
 		get_tree().current_scene.add_child(bullet)
 		start_rot += 20
+	
+	SoundManager.play_sound(bullet_sound)
 	
 	await get_tree().create_timer(rate_of_fire).timeout
 	is_shooting = false
