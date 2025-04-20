@@ -43,4 +43,7 @@ script = ExtResource("1_mdm0b")
 enemy_to_spawn = Array[ExtResource("2_a16tu")]([SubResource("Resource_ra8ls"), SubResource("Resource_fbway"), SubResource("Resource_p77l7"), SubResource("Resource_iaos1"), SubResource("Resource_iw1ec")])
 metadata/_custom_type_script = "uid://bac54mi18tq8"
 
-[node name="SpawnTimer" type="Timer" parent="."]
+[node name="SpawnAddCounter" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="SpawnAddCounter" to="." method="_on_spawn_add_counter_timeout"]

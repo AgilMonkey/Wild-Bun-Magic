@@ -15,7 +15,7 @@ func _init() -> void:
 	rate_of_fire = 0.04
 
 
-func _ready():
+func ready_yerself_dumbass():
 	laser_sound = get_node("LaserSound")
 	spell_changed.connect(stop_laser)
 

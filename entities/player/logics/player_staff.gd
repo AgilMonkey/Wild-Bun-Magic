@@ -9,8 +9,7 @@ var mouse_position: Vector2
 
 
 func _ready() -> void:
-	#change_spell()
-	GlobalUi.cur_spell = cur_spell
+	change_spell()
 	
 	cur_spell.spell_casted.connect(func ():
 		staff_anim_player.stop()
@@ -43,6 +42,8 @@ func change_spell():
 	$SpellCastPoint.set_script(script)
 	$SpellCastPoint.set_process(false)
 	$SpellCastPoint.set_process(true)
+	if $SpellCastPoint.has_method("ready_yerself_dumbass"):
+		$SpellCastPoint.ready_yerself_dumbass()
 	
 	GlobalUi.cur_spell = cur_spell
 	
