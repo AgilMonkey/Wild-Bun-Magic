@@ -13,6 +13,7 @@ var last_vel: Vector2
 func _ready() -> void:
 	get_tree().create_timer(15.0).timeout.connect(func ():
 		is_dead = true
+		velocity = Vector2.ZERO
 		animation_player.play("Smoke")
 		await animation_player.animation_finished
 		queue_free()
