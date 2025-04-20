@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dklbwgr08tit0"]
+[gd_scene load_steps=7 format=3 uid="uid://dklbwgr08tit0"]
 
 [ext_resource type="Script" uid="uid://uncsybshfvof" path="res://entities/ui/player_ui/healthbar_ui.gd" id="1_2d16l"]
 [ext_resource type="Script" uid="uid://ccsuocuo5haky" path="res://entities/ui/player_ui/spell_ui.gd" id="1_77lnr"]
+[ext_resource type="Script" uid="uid://c6htl8rduw4cs" path="res://entities/ui/player_ui/score_ui.gd" id="3_c8j1h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77lnr"]
 bg_color = Color(9.62615e-07, 0.887201, 0.07393, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_77lnr"]
 font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_a72te"]
+font_size = 52
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -91,3 +95,28 @@ layout_mode = 2
 text = "Can Shoot!"
 label_settings = SubResource("LabelSettings_77lnr")
 horizontal_alignment = 2
+
+[node name="ScoreUI" type="Control" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("3_c8j1h")
+
+[node name="Score" type="Label" parent="MarginContainer/Control/ScoreUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_right = 144.0
+offset_bottom = 49.0
+grow_horizontal = 2
+text = "12"
+label_settings = SubResource("LabelSettings_a72te")
+horizontal_alignment = 1
+vertical_alignment = 1

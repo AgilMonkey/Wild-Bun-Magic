@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 
 GlobalUi="*res://entities/globals/global_ui.gd"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
+HighscoreManager="*res://entities/managers/highscore_manager/highscore_manager.gd"
+Global="*res://entities/managers/global/Global.gd"
 
 [debug]
 

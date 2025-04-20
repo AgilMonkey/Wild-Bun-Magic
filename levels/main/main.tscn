@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://ca8tn02iyeljw"]
+[gd_scene load_steps=8 format=3 uid="uid://ca8tn02iyeljw"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_0ppp4"]
 [ext_resource type="PackedScene" uid="uid://dhl552xt6p4c1" path="res://entities/player/player.tscn" id="1_db3qx"]
-[ext_resource type="Script" uid="uid://bg16oasgteqcj" path="res://levels/main_test_scene/main_test_scene.gd" id="1_jvi5a"]
+[ext_resource type="Script" uid="uid://bg16oasgteqcj" path="res://levels/main/main.gd" id="1_jvi5a"]
 [ext_resource type="PackedScene" uid="uid://dklbwgr08tit0" path="res://entities/ui/player_ui/player_ui.tscn" id="4_o4x35"]
 [ext_resource type="PackedScene" uid="uid://c2mjbspvxsudv" path="res://entities/ui/gameover_ui/gameover_ui.tscn" id="5_0cjx8"]
 [ext_resource type="PackedScene" uid="uid://vpq2j2mmkyfu" path="res://entities/managers/spawn_manager/spawn_manager.tscn" id="6_k73vk"]
+[ext_resource type="Script" uid="uid://c4tvag36b0ng5" path="res://levels/main/score_counter.gd" id="7_0cjx8"]
 
-[node name="main_test_scene" type="Node2D"]
+[node name="main" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_jvi5a")
 
@@ -29,6 +30,9 @@ visible = false
 
 [node name="SpawnManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_k73vk")]
 player = NodePath("../Player")
+
+[node name="ScoreCounter" type="Node" parent="."]
+script = ExtResource("7_0cjx8")
 
 [connection signal="on_player_died" from="Player" to="." method="_on_player_on_player_died"]
 [connection signal="restart_game" from="UI/GameoverUi" to="." method="_on_gameover_ui_restart_game"]

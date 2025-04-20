@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 func _on_health_component_health_reached_zero() -> void:
 	drop_pickups()
+	Global.player_killed_an_enemy.emit()
 	call_deferred("queue_free")
 
 
