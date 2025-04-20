@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dhl552xt6p4c1"]
+[gd_scene load_steps=35 format=3 uid="uid://dhl552xt6p4c1"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/logics/player.gd" id="1_qiwj3"]
@@ -18,6 +18,10 @@
 [ext_resource type="Script" uid="uid://c0gfxoe5yjjlu" path="res://entities/spells/duck_spell/duck_spell.gd" id="10_3wlsy"]
 [ext_resource type="Script" uid="uid://cs1vxy5t8bgst" path="res://entities/player/logics/player_animation.gd" id="12_a1qjk"]
 [ext_resource type="Texture2D" uid="uid://dgy2q30nc5x1e" path="res://entities/player/assets/player2.png" id="13_j3ovn"]
+[ext_resource type="Script" uid="uid://naloe5a42lym" path="res://entities/player/laser_sound.gd" id="14_221hk"]
+[ext_resource type="AudioStream" uid="uid://dqk2qngch21ex" path="res://assets/laser_start.wav" id="14_we0b7"]
+[ext_resource type="AudioStream" uid="uid://c0nabj3eqc84f" path="res://assets/laser_hold.wav" id="15_mtric"]
+[ext_resource type="AudioStream" uid="uid://cj4sy5qlmg121" path="res://assets/laser_end.wav" id="16_eyb6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
 size = Vector2(35, 95.5)
@@ -288,6 +292,21 @@ texture = ExtResource("1_8afob")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerStaff/SpellCastPoint/Laser"]
 position = Vector2(751, 0)
 shape = SubResource("RectangleShape2D_j3ovn")
+
+[node name="LaserSound" type="Node2D" parent="PlayerStaff/SpellCastPoint" node_paths=PackedStringArray("laser_audio_start", "laser_audio_hold", "laser_audio_end")]
+script = ExtResource("14_221hk")
+laser_audio_start = NodePath("LaserStart")
+laser_audio_hold = NodePath("LaserHold")
+laser_audio_end = NodePath("LaserEnd")
+
+[node name="LaserStart" type="AudioStreamPlayer" parent="PlayerStaff/SpellCastPoint/LaserSound"]
+stream = ExtResource("14_we0b7")
+
+[node name="LaserHold" type="AudioStreamPlayer" parent="PlayerStaff/SpellCastPoint/LaserSound"]
+stream = ExtResource("15_mtric")
+
+[node name="LaserEnd" type="AudioStreamPlayer" parent="PlayerStaff/SpellCastPoint/LaserSound"]
+stream = ExtResource("16_eyb6c")
 
 [node name="StaffAnimationPlayer" type="AnimationPlayer" parent="PlayerStaff"]
 libraries = {

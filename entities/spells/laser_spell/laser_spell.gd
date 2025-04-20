@@ -4,6 +4,7 @@ extends Spell
 
 
 var laser: Laser
+var laser_sound: Node2D
 
 
 func _init() -> void:
@@ -12,6 +13,8 @@ func _init() -> void:
 	ammo = 100
 	damage = 10
 	rate_of_fire = 0.04
+	
+	laser_sound = get_node("LaserSound")
 
 
 
@@ -26,11 +29,15 @@ func _process(delta: float) -> void:
 		laser.show()
 		laser.process_mode = Node.PROCESS_MODE_INHERIT
 		
+		laser_sound.start_sound()
+		
 		await get_tree().create_timer(rate_of_fire).timeout
 		is_shooting = false
 	else:
 		laser.hide()
 		laser.process_mode = Node.PROCESS_MODE_DISABLED
+		
+		laser_sound.end_sound()
 
 
 func shoot(_cur_node):
