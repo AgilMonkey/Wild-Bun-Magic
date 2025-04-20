@@ -20,7 +20,7 @@ func _on_health_component_health_reached_zero() -> void:
 	collision_shape_2d.call_deferred("set_disabled", true)
 	hitbox_component.call_deferred("queue_free")
 	for node: Node in nodes_to_dissable:
-		node.process_mode = Node.PROCESS_MODE_DISABLED
+		node.queue_free()
 	SoundManager.play_sound(ENEMY_HIT_SOUND)
 	enemy_anim_player.play("enemy_anim_lib/death")
 
