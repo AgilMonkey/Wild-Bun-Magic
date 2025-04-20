@@ -1,14 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://bl0spk6gymtey"]
+[gd_scene load_steps=17 format=3 uid="uid://bl0spk6gymtey"]
 
 [ext_resource type="Script" uid="uid://dhopvrh0xvdq4" path="res://entities/enemies/simple_enemy/enemy.gd" id="1_iplvi"]
 [ext_resource type="PackedScene" uid="uid://dbb54nr1beapg" path="res://entities/health_drop/health_drop.tscn" id="2_kg1dj"]
 [ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="2_paah2"]
 [ext_resource type="Script" uid="uid://bfgcawdmt8vox" path="res://entities/enemies/simple_enemy/follow_player.gd" id="3_82qr8"]
-[ext_resource type="Texture2D" uid="uid://cph0nn63lko2v" path="res://entities/enemies/assets/enemy2.png" id="3_oxdrg"]
 [ext_resource type="Script" uid="uid://cl5g6pwsy7x6j" path="res://entities/enemies/simple_enemy/simple_attacking.gd" id="4_rfvys"]
 [ext_resource type="Script" uid="uid://ctvcfg16g1pkt" path="res://commons/health/health_component.gd" id="5_i8idp"]
 [ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="6_ae7xc"]
 [ext_resource type="Script" uid="uid://ck82pbmrvnc4n" path="res://entities/enemies/simple_enemy/enemy_animation.gd" id="9_oxdrg"]
+[ext_resource type="Texture2D" uid="uid://b3w7i1ds7agwm" path="res://assets/bunny3.png" id="10_281hr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oxdrg"]
 radius = 18.0
@@ -20,6 +20,62 @@ radius = 40.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ae7xc"]
 size = Vector2(64, 64)
 
+[sub_resource type="Animation" id="Animation_rol7m"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.075, 0.075)]
+}
+
+[sub_resource type="Animation" id="Animation_281hr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.075, 0.075)]
+}
+
+[sub_resource type="Animation" id="Animation_rhr3y"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(0, 0, 0),
+"update": 0,
+"values": [Vector2(0.075, 0.075), Vector2(0.07, 0.08), Vector2(0.075, 0.075)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_281hr"]
+_data = {
+&"RESET": SubResource("Animation_281hr"),
+&"idle": SubResource("Animation_rol7m"),
+&"walk": SubResource("Animation_rhr3y")
+}
+
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 3
@@ -30,8 +86,9 @@ chance_to_drop_health = 0.05
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
-scale = Vector2(0.0735, 0.0735)
-texture = ExtResource("3_oxdrg")
+position = Vector2(-3, -1)
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("10_281hr")
 offset = Vector2(10.2041, -112.245)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -74,5 +131,10 @@ attackbox_col = NodePath("../AttackboxComponent/CollisionShape2D")
 script = ExtResource("5_i8idp")
 max_health = 50
 metadata/_custom_type_script = "uid://ctvcfg16g1pkt"
+
+[node name="EnemyAnimPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_281hr")
+}
 
 [connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
