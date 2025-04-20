@@ -11,7 +11,7 @@ var being_hit := false
 
 
 func _ready() -> void:
-	enemy_anim_player.play("walk")
+	enemy_anim_player.play("enemy_anim_lib/walk")
 
 func _physics_process(_delta: float) -> void:
 	var to_player = player.global_position - body.global_position

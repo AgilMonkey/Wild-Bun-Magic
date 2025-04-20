@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bac54mi18tq8" path="res://entities/managers/spawn_manager/SpawnManager.gd" id="1_mdm0b"]
 [ext_resource type="Script" uid="uid://bdpcnj3punf2n" path="res://entities/enemies/enemy_resource.gd" id="2_a16tu"]
-[ext_resource type="PackedScene" uid="uid://bl0spk6gymtey" path="res://entities/enemies/simple_enemy/Enemy.tscn" id="3_x77c3"]
+[ext_resource type="PackedScene" uid="uid://bl0spk6gymtey" path="res://entities/enemies/simple_enemy/SimpleEnemy.tscn" id="3_x77c3"]
 [ext_resource type="PackedScene" uid="uid://dx4d0juldt1ne" path="res://entities/enemies/shoot_enemy/ShootyEnemy.tscn" id="4_xv3w3"]
 [ext_resource type="PackedScene" uid="uid://cg0dt524l6uie" path="res://entities/enemies/shotgun_enemy/ShotgunEnemy.tscn" id="5_amdai"]
 [ext_resource type="PackedScene" uid="uid://bavom36i7jaq5" path="res://entities/enemies/circle_enemy/CircleEnemy.tscn" id="6_m76ep"]

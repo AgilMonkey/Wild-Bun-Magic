@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cg0dt524l6uie"]
+[gd_scene load_steps=22 format=3 uid="uid://cg0dt524l6uie"]
 
 [ext_resource type="Script" uid="uid://dhopvrh0xvdq4" path="res://entities/enemies/simple_enemy/enemy.gd" id="1_qn2x1"]
 [ext_resource type="PackedScene" uid="uid://dbb54nr1beapg" path="res://entities/health_drop/health_drop.tscn" id="2_lhgbq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://c4jt1g0a3cha4" path="res://entities/enemies/simple_enemy/EnemyMat.tres" id="3_kmklh"]
 [ext_resource type="Texture2D" uid="uid://b3w7i1ds7agwm" path="res://assets/bunny3.png" id="4_41c24"]
 [ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="5_jac35"]
+[ext_resource type="Texture2D" uid="uid://bsx2ey1cfeen6" path="res://assets/smoke2.png" id="6_3xobe"]
 [ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="6_bg8mo"]
 [ext_resource type="Script" uid="uid://ck82pbmrvnc4n" path="res://entities/enemies/simple_enemy/enemy_animation.gd" id="7_4kmua"]
 [ext_resource type="Script" uid="uid://bfgcawdmt8vox" path="res://entities/enemies/simple_enemy/follow_player.gd" id="8_od6pe"]
@@ -13,6 +14,7 @@
 [ext_resource type="Script" uid="uid://ctvcfg16g1pkt" path="res://commons/health/health_component.gd" id="10_koxgn"]
 [ext_resource type="Script" uid="uid://du3708j4i0nbe" path="res://entities/enemies/shotgun_enemy/shoot_at_player_shotgun.gd" id="11_41c24"]
 [ext_resource type="Script" uid="uid://vgywicirnymn" path="res://entities/enemies/simple_enemy/enemy_flash_white_when_hit.gd" id="12_b4rhe"]
+[ext_resource type="AnimationLibrary" uid="uid://damhsvgmw0ya1" path="res://entities/enemies/enemy_anim_lib.res" id="14_gegdq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oxdrg"]
 radius = 18.0
@@ -23,62 +25,6 @@ radius = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ae7xc"]
 size = Vector2(64, 64)
-
-[sub_resource type="Animation" id="Animation_281hr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.075, 0.075)]
-}
-
-[sub_resource type="Animation" id="Animation_rol7m"]
-resource_name = "idle"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.075, 0.075)]
-}
-
-[sub_resource type="Animation" id="Animation_rhr3y"]
-resource_name = "walk"
-length = 0.4
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(0, 0, 0),
-"update": 0,
-"values": [Vector2(0.075, 0.075), Vector2(0.07, 0.08), Vector2(0.075, 0.075)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_281hr"]
-_data = {
-&"RESET": SubResource("Animation_281hr"),
-&"idle": SubResource("Animation_rol7m"),
-&"walk": SubResource("Animation_rhr3y")
-}
 
 [sub_resource type="Animation" id="Animation_ney62"]
 length = 0.001
@@ -126,19 +72,25 @@ script = ExtResource("1_qn2x1")
 health_pickup_instance = ExtResource("2_lhgbq")
 chance_to_drop_health = 0.05
 
-[node name="WeaponSprite" type="Sprite2D" parent="."]
-material = ExtResource("3_kmklh")
-position = Vector2(-16, 8)
-rotation = -1.96538
-scale = Vector2(0.161219, 0.16122)
-texture = ExtResource("3_48frr")
-offset = Vector2(212.619, -4.52381)
-
 [node name="EnemySprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
 scale = Vector2(0.075, 0.075)
 texture = ExtResource("4_41c24")
 offset = Vector2(10.2041, -112.245)
+
+[node name="WeaponSprite" type="Sprite2D" parent="EnemySprite"]
+z_index = -1
+material = ExtResource("3_kmklh")
+position = Vector2(-213.333, 106.667)
+rotation = -1.96538
+scale = Vector2(2.14959, 2.1496)
+texture = ExtResource("3_48frr")
+offset = Vector2(212.619, -4.52381)
+
+[node name="Smoke" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.014, 0.014)
+texture = ExtResource("6_3xobe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 5)
@@ -188,7 +140,7 @@ shoot_timer = 3.0
 
 [node name="EnemyAnimPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_281hr")
+&"enemy_anim_lib": ExtResource("14_gegdq")
 }
 
 [node name="EnemyFlashWhiteWhenHit" type="Node" parent="." node_paths=PackedStringArray("flash_white_player")]
