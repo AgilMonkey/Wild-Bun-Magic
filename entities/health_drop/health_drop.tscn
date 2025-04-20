@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dbb54nr1beapg"]
 
 [ext_resource type="Script" uid="uid://be03b3awppuox" path="res://entities/health_drop/health_drop.gd" id="1_dityx"]
-[ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_g2rpu"]
 [ext_resource type="AudioStream" uid="uid://cqugeiv2pybs8" path="res://assets/health_up.wav" id="3_duml3"]
+[ext_resource type="Texture2D" uid="uid://bw5yu2mw5nlfm" path="res://assets/hearth.png" id="3_ihdyo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2rpu"]
 size = Vector2(100, 100)
@@ -13,9 +13,8 @@ script = ExtResource("1_dityx")
 health_up_audio = ExtResource("3_duml3")
 
 [node name="HealthDropSprite" type="Sprite2D" parent="."]
-modulate = Color(1, 0.215306, 0.272277, 1)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_g2rpu")
+scale = Vector2(0.044, 0.044)
+texture = ExtResource("3_ihdyo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g2rpu")
