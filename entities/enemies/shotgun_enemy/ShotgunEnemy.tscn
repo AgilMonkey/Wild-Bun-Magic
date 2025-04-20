@@ -201,4 +201,5 @@ libraries = {
 }
 
 [connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
+[connection signal="hurted" from="HealthComponent" to="FollowPlayer" method="_on_health_component_hurted"]
 [connection signal="hurted" from="HealthComponent" to="EnemyFlashWhiteWhenHit" method="flash_white"]
