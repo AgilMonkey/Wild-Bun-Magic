@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca8tn02iyeljw"]
+[gd_scene load_steps=10 format=3 uid="uid://ca8tn02iyeljw"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_0ppp4"]
 [ext_resource type="PackedScene" uid="uid://dhl552xt6p4c1" path="res://entities/player/player.tscn" id="1_db3qx"]
@@ -8,6 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://vpq2j2mmkyfu" path="res://entities/managers/spawn_manager/spawn_manager.tscn" id="6_k73vk"]
 [ext_resource type="Script" uid="uid://c4tvag36b0ng5" path="res://levels/main/score_counter.gd" id="7_0cjx8"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q42nm"]
+size = Vector2(2162, 4960)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oclhf"]
+size = Vector2(12240, 2112)
+
 [node name="main" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_jvi5a")
@@ -15,11 +21,56 @@ script = ExtResource("1_jvi5a")
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.355314, 0.355314, 0.355314, 1)
 z_index = -10
-scale = Vector2(24.8906, 24.8906)
+scale = Vector2(70.125, 39.875)
 texture = ExtResource("1_0ppp4")
-metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_db3qx")]
+
+[node name="WallAround" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallAround"]
+position = Vector2(-5039, 0)
+shape = SubResource("RectangleShape2D_q42nm")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WallAround"]
+position = Vector2(5039, 0)
+shape = SubResource("RectangleShape2D_q42nm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WallAround"]
+position = Vector2(0, 3216)
+shape = SubResource("RectangleShape2D_oclhf")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WallAround"]
+position = Vector2(0, -3216)
+shape = SubResource("RectangleShape2D_oclhf")
+
+[node name="Background2" type="Sprite2D" parent="WallAround"]
+modulate = Color(0.955963, 0.955963, 0.955963, 1)
+z_index = -10
+position = Vector2(400, -3920)
+scale = Vector2(98.75, 27.5)
+texture = ExtResource("1_0ppp4")
+
+[node name="Background3" type="Sprite2D" parent="WallAround"]
+modulate = Color(0.955963, 0.955963, 0.955963, 1)
+z_index = -10
+position = Vector2(168, 3968)
+scale = Vector2(98.75, 27.5)
+texture = ExtResource("1_0ppp4")
+
+[node name="Background4" type="Sprite2D" parent="WallAround"]
+modulate = Color(0.955963, 0.955963, 0.955963, 1)
+z_index = -10
+position = Vector2(5216, 248)
+scale = Vector2(19.375, 53)
+texture = ExtResource("1_0ppp4")
+
+[node name="Background5" type="Sprite2D" parent="WallAround"]
+modulate = Color(0.955963, 0.955963, 0.955963, 1)
+z_index = -10
+position = Vector2(-5240, 112)
+scale = Vector2(19.375, 53)
+texture = ExtResource("1_0ppp4")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
