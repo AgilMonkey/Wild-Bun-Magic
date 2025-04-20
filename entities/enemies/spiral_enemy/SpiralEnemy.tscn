@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dhopvrh0xvdq4" path="res://entities/enemies/simple_enemy/enemy.gd" id="1_4h1ky"]
 [ext_resource type="PackedScene" uid="uid://dbb54nr1beapg" path="res://entities/health_drop/health_drop.tscn" id="2_58sm2"]
 [ext_resource type="Texture2D" uid="uid://carwpcdxmobmf" path="res://entities/player/assets/tongkat.png" id="3_tbuhd"]
-[ext_resource type="Texture2D" uid="uid://cph0nn63lko2v" path="res://entities/enemies/assets/enemy2.png" id="4_2bvry"]
+[ext_resource type="Texture2D" uid="uid://b3w7i1ds7agwm" path="res://assets/bunny3.png" id="4_ag7xq"]
 [ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="5_s3iah"]
 [ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="6_ljpnp"]
 [ext_resource type="Script" uid="uid://ck82pbmrvnc4n" path="res://entities/enemies/simple_enemy/enemy_animation.gd" id="7_ordk5"]
@@ -22,8 +22,7 @@ radius = 40.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ae7xc"]
 size = Vector2(64, 64)
 
-[sub_resource type="Animation" id="Animation_rol7m"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_281hr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -38,7 +37,8 @@ tracks/0/keys = {
 "values": [Vector2(0.075, 0.075)]
 }
 
-[sub_resource type="Animation" id="Animation_281hr"]
+[sub_resource type="Animation" id="Animation_rol7m"]
+resource_name = "idle"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -96,7 +96,7 @@ offset = Vector2(212.619, -4.52381)
 [node name="EnemySprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
 scale = Vector2(0.075, 0.075)
-texture = ExtResource("4_2bvry")
+texture = ExtResource("4_ag7xq")
 offset = Vector2(10.2041, -112.245)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

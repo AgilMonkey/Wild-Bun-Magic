@@ -1,14 +1,22 @@
-[gd_scene load_steps=17 format=3 uid="uid://bl0spk6gymtey"]
+[gd_scene load_steps=23 format=3 uid="uid://bl0spk6gymtey"]
 
 [ext_resource type="Script" uid="uid://dhopvrh0xvdq4" path="res://entities/enemies/simple_enemy/enemy.gd" id="1_iplvi"]
 [ext_resource type="PackedScene" uid="uid://dbb54nr1beapg" path="res://entities/health_drop/health_drop.tscn" id="2_kg1dj"]
 [ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="2_paah2"]
 [ext_resource type="Script" uid="uid://bfgcawdmt8vox" path="res://entities/enemies/simple_enemy/follow_player.gd" id="3_82qr8"]
+[ext_resource type="Shader" uid="uid://boyv6ttt7bgoq" path="res://entities/enemies/simple_enemy/flash_white.gdshader" id="3_rhr3y"]
 [ext_resource type="Script" uid="uid://cl5g6pwsy7x6j" path="res://entities/enemies/simple_enemy/simple_attacking.gd" id="4_rfvys"]
 [ext_resource type="Script" uid="uid://ctvcfg16g1pkt" path="res://commons/health/health_component.gd" id="5_i8idp"]
 [ext_resource type="Script" uid="uid://d2ssuuarj6kcv" path="res://commons/hitbox/hitbox_component.gd" id="6_ae7xc"]
 [ext_resource type="Script" uid="uid://ck82pbmrvnc4n" path="res://entities/enemies/simple_enemy/enemy_animation.gd" id="9_oxdrg"]
 [ext_resource type="Texture2D" uid="uid://b3w7i1ds7agwm" path="res://assets/bunny3.png" id="10_281hr"]
+[ext_resource type="Script" uid="uid://vgywicirnymn" path="res://entities/enemies/simple_enemy/enemy_flash_white_when_hit.gd" id="10_rhr3y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rhr3y"]
+resource_local_to_scene = true
+shader = ExtResource("3_rhr3y")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oxdrg"]
 radius = 18.0
@@ -20,8 +28,7 @@ radius = 40.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ae7xc"]
 size = Vector2(64, 64)
 
-[sub_resource type="Animation" id="Animation_rol7m"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_281hr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -36,7 +43,8 @@ tracks/0/keys = {
 "values": [Vector2(0.075, 0.075)]
 }
 
-[sub_resource type="Animation" id="Animation_281hr"]
+[sub_resource type="Animation" id="Animation_rol7m"]
+resource_name = "idle"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -76,6 +84,44 @@ _data = {
 &"walk": SubResource("Animation_rhr3y")
 }
 
+[sub_resource type="Animation" id="Animation_ney62"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_w7mge"]
+resource_name = "FlashWhite"
+length = 0.1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(0.5, 5.46416, 0.5),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ney62"]
+_data = {
+&"RESET": SubResource("Animation_ney62"),
+&"flash_white": SubResource("Animation_w7mge")
+}
+
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 3
@@ -86,6 +132,7 @@ chance_to_drop_health = 0.05
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_rhr3y")
 position = Vector2(-3, -1)
 scale = Vector2(0.075, 0.075)
 texture = ExtResource("10_281hr")
@@ -137,4 +184,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_281hr")
 }
 
+[node name="EnemyFlashWhiteWhenHit" type="Node" parent="." node_paths=PackedStringArray("flash_white_player")]
+script = ExtResource("10_rhr3y")
+flash_white_player = NodePath("../FlashWhitePlayer")
+
+[node name="FlashWhitePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ney62")
+}
+
 [connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
+[connection signal="hurted" from="HealthComponent" to="EnemyFlashWhiteWhenHit" method="flash_white"]
