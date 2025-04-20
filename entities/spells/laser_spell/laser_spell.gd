@@ -17,7 +17,7 @@ func _init() -> void:
 
 func ready_yerself_dumbass():
 	laser_sound = get_node("LaserSound")
-	#spell_changed.connect(stop_laser)
+	spell_changed.connect(stop_laser)
 
 
 func _process(delta: float) -> void:
