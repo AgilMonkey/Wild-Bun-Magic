@@ -1,6 +1,5 @@
-[gd_scene load_steps=38 format=3 uid="uid://dhl552xt6p4c1"]
+[gd_scene load_steps=39 format=3 uid="uid://dhl552xt6p4c1"]
 
-[ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/logics/player.gd" id="1_qiwj3"]
 [ext_resource type="AudioStream" uid="uid://bnkle7v31lqq7" path="res://assets/hurt.wav" id="2_b2kln"]
 [ext_resource type="Script" uid="uid://y04u7tfbluw2" path="res://entities/player/logics/player_movement.gd" id="2_dovo2"]
@@ -20,7 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://di5a4unp11lfe" path="res://assets/staff.png" id="12_t1t22"]
 [ext_resource type="Texture2D" uid="uid://dgy2q30nc5x1e" path="res://entities/player/assets/player2.png" id="13_j3ovn"]
 [ext_resource type="Script" uid="uid://naloe5a42lym" path="res://entities/player/laser_sound.gd" id="14_221hk"]
+[ext_resource type="Texture2D" uid="uid://b8w2bpxxn2gav" path="res://assets/laser_ball.png" id="14_t1t22"]
 [ext_resource type="AudioStream" uid="uid://dqk2qngch21ex" path="res://assets/laser_start.wav" id="14_we0b7"]
+[ext_resource type="Texture2D" uid="uid://ptv2s6csv5tr" path="res://assets/laser.png" id="15_50fht"]
 [ext_resource type="AudioStream" uid="uid://c0nabj3eqc84f" path="res://assets/laser_hold.wav" id="15_mtric"]
 [ext_resource type="AudioStream" uid="uid://cj4sy5qlmg121" path="res://assets/laser_end.wav" id="16_eyb6c"]
 [ext_resource type="Texture2D" uid="uid://7qhntrxf2h2o" path="res://assets/player3_2.png" id="22_ghoj8"]
@@ -373,14 +374,23 @@ visible = false
 collision_mask = 3
 script = ExtResource("9_gx6sm")
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerStaff/SpellCastPoint/Laser"]
-position = Vector2(746.5, 0)
-scale = Vector2(11.8047, 0.140625)
-texture = ExtResource("1_8afob")
+[node name="LaserBallSprite" type="Sprite2D" parent="PlayerStaff/SpellCastPoint/Laser"]
+z_index = 3
+position = Vector2(-8, -1)
+scale = Vector2(0.0947075, 0.0947075)
+texture = ExtResource("14_t1t22")
+
+[node name="LaserSprite" type="Sprite2D" parent="PlayerStaff/SpellCastPoint/Laser"]
+z_index = 3
+position = Vector2(-2.12367, -0.198467)
+scale = Vector2(0.02, 0.092)
+texture = ExtResource("15_50fht")
+offset = Vector2(631.302, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerStaff/SpellCastPoint/Laser"]
 position = Vector2(751, 0)
 shape = SubResource("RectangleShape2D_j3ovn")
+metadata/_edit_lock_ = true
 
 [node name="LaserSound" type="Node2D" parent="PlayerStaff/SpellCastPoint" node_paths=PackedStringArray("laser_audio_start", "laser_audio_hold", "laser_audio_end")]
 script = ExtResource("14_221hk")

@@ -39,7 +39,9 @@ func change_spell():
 	all_spells_no_this.erase($SpellCastPoint.get_script())
 	var script = all_spells_no_this.pick_random()
 	$SpellCastPoint.spell_changed.emit()
-	$SpellCastPoint.set_script(script)
+	#$SpellCastPoint.set_script(script)
+	$SpellCastPoint.set_script(null)
+	$SpellCastPoint.set_script(load("res://entities/spells/laser_spell/laser_spell.gd"))
 	$SpellCastPoint.set_process(false)
 	$SpellCastPoint.set_process(true)
 	if $SpellCastPoint.has_method("ready_yerself_dumbass"):

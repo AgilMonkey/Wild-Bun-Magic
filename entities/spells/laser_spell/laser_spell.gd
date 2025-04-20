@@ -17,7 +17,7 @@ func _init() -> void:
 
 func ready_yerself_dumbass():
 	laser_sound = get_node("LaserSound")
-	spell_changed.connect(stop_laser)
+	#spell_changed.connect(stop_laser)
 
 
 func _process(delta: float) -> void:
@@ -28,8 +28,8 @@ func _process(delta: float) -> void:
 		ammo -= 1
 		
 		# LOGIC
-		laser.show()
 		laser.process_mode = Node.PROCESS_MODE_INHERIT
+		laser.laser_starting.emit()
 		
 		laser_sound.start_sound()
 		
@@ -40,8 +40,7 @@ func _process(delta: float) -> void:
 
 
 func stop_laser():
-	laser.hide()
-	laser.process_mode = Node.PROCESS_MODE_DISABLED
+	laser.laser_stoping.emit()
 	
 	laser_sound.end_sound()
 
