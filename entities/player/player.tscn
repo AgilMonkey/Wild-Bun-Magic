@@ -1,10 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://dhl552xt6p4c1"]
+[gd_scene load_steps=36 format=3 uid="uid://dhl552xt6p4c1"]
 
 [ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cad367hljg53x" path="res://entities/player/logics/player.gd" id="1_qiwj3"]
-[ext_resource type="Texture2D" uid="uid://b0sh4nnlonsj8" path="res://entities/player/assets/player2_2.png" id="2_a1qjk"]
 [ext_resource type="AudioStream" uid="uid://bnkle7v31lqq7" path="res://assets/hurt.wav" id="2_b2kln"]
 [ext_resource type="Script" uid="uid://y04u7tfbluw2" path="res://entities/player/logics/player_movement.gd" id="2_dovo2"]
+[ext_resource type="Texture2D" uid="uid://d3mc0x2fqok7c" path="res://assets/player3_1.png" id="3_ghoj8"]
 [ext_resource type="Script" uid="uid://d2xqhqa7tnsor" path="res://entities/player/logics/player_staff.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://ncbf2pf4v4m4" path="res://entities/spells/simple_spell/simple_spell.gd" id="4_bls4j"]
 [ext_resource type="Script" uid="uid://ckiwrkpyugv3q" path="res://entities/spells/shotgun_spell/shotgun_spell.gd" id="5_8fjmc"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://dqk2qngch21ex" path="res://assets/laser_start.wav" id="14_we0b7"]
 [ext_resource type="AudioStream" uid="uid://c0nabj3eqc84f" path="res://assets/laser_hold.wav" id="15_mtric"]
 [ext_resource type="AudioStream" uid="uid://cj4sy5qlmg121" path="res://assets/laser_end.wav" id="16_eyb6c"]
+[ext_resource type="Texture2D" uid="uid://7qhntrxf2h2o" path="res://assets/player3_2.png" id="22_ghoj8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
 size = Vector2(35, 95.5)
@@ -167,7 +168,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_a1qjk")]
+"values": [ExtResource("3_ghoj8")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -196,7 +197,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_a1qjk")]
+"values": [ExtResource("3_ghoj8")]
 }
 
 [sub_resource type="Animation" id="Animation_afbqv"]
@@ -214,7 +215,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(0, 0, 0),
 "update": 1,
-"values": [ExtResource("13_j3ovn"), ExtResource("2_a1qjk"), ExtResource("13_j3ovn")]
+"values": [ExtResource("22_ghoj8"), ExtResource("3_ghoj8"), ExtResource("13_j3ovn")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -249,7 +250,8 @@ position_smoothing_speed = 10.0
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
 position = Vector2(-2, -13)
-texture = ExtResource("2_a1qjk")
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("3_ghoj8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 18.75)
