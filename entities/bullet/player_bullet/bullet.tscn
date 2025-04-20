@@ -1,18 +1,19 @@
 [gd_scene load_steps=5 format=3 uid="uid://cna0e7eihip8f"]
 
 [ext_resource type="Script" uid="uid://sb1pljjtsgfv" path="res://entities/bullet/player_bullet/bullet.gd" id="1_2kyv7"]
-[ext_resource type="Texture2D" uid="uid://cthw2iuwsc3ka" path="res://icon.svg" id="1_78c8h"]
+[ext_resource type="Texture2D" uid="uid://g6ovyt64246a" path="res://assets/bullet.png" id="2_cydyr"]
 [ext_resource type="PackedScene" uid="uid://ctqbx520r1gsq" path="res://commons/attackbox/attackbox_component.tscn" id="3_5h0jh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5h0jh"]
-radius = 26.0192
+radius = 32.9848
 
 [node name="PlayerBullet" type="Node2D"]
 script = ExtResource("1_2kyv7")
 
-[node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_78c8h")
+[node name="BulletSprite" type="Sprite2D" parent="."]
+modulate = Color(0, 0.233334, 1, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_cydyr")
 
 [node name="AttackboxComponent" parent="." instance=ExtResource("3_5h0jh")]
 is_damage_by_itself = false
