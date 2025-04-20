@@ -2,6 +2,7 @@ extends Spell
 
 
 var duck_scene
+var duck_sound: AudioStream
 
 
 func _init() -> void:
@@ -13,6 +14,7 @@ func _init() -> void:
 	speed = 1000
 	
 	duck_scene = preload("res://entities/spells/duck_spell/duck.tscn")
+	duck_sound = preload("res://assets/duck.wav")
 
 
 func shoot(_cur_node: Node2D):
@@ -25,11 +27,15 @@ func shoot(_cur_node: Node2D):
 	get_tree().current_scene.add_child(duck)
 	shoot_duck(duck)
 	
+	var sound := SoundManager.play_sound(duck_sound)
+	sound.pitch_scale = randf_range(0.8, 1.5)
+	
 	await get_tree().create_timer(rate_of_fire).timeout
 	is_shooting = false
 
 
 func shoot_duck(duck: CharacterBody2D):
 	duck.velocity = global_transform.x * speed
-	await get_tree().create_timer(0.4).timeout
-	duck.velocity = Vector2.ZERO
+	get_tree().create_timer(0.4).timeout.connect(func ():
+		duck.velocity = Vector2.ZERO
+	)
