@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://bdpcnj3punf2n"
 [sub_resource type="Resource" id="Resource_p77l7"]
 script = ExtResource("2_a16tu")
 enemy_instance = ExtResource("5_amdai")
-chance = 50
+chance = 10
 metadata/_custom_type_script = "uid://bdpcnj3punf2n"
 
 [sub_resource type="Resource" id="Resource_iaos1"]
