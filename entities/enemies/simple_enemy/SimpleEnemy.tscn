@@ -62,13 +62,14 @@ _data = {
 &"flash_white": SubResource("Animation_w7mge")
 }
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("nodes_to_dissable") groups=["enemy"]]
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_njwkq")
 health_pickup_instance = ExtResource("2_a7cha")
 chance_to_drop_health = 0.05
+nodes_to_dissable = [NodePath("SimpleAttacking"), NodePath("FollowPlayer")]
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 y_sort_enabled = true

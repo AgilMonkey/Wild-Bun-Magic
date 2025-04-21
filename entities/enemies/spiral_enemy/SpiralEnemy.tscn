@@ -71,7 +71,7 @@ motion_mode = 1
 script = ExtResource("1_4h1ky")
 health_pickup_instance = ExtResource("2_58sm2")
 chance_to_drop_health = 0.05
-nodes_to_dissable = [NodePath("ShootAtPlayerSpiral")]
+nodes_to_dissable = [NodePath("ShootAtPlayerSpiral"), NodePath("FollowPlayer"), NodePath("SimpleAttacking")]
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
