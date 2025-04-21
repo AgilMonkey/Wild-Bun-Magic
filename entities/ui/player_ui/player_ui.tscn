@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dklbwgr08tit0"]
+[gd_scene load_steps=11 format=3 uid="uid://dklbwgr08tit0"]
 
 [ext_resource type="Script" uid="uid://uncsybshfvof" path="res://entities/ui/player_ui/healthbar_ui.gd" id="1_2d16l"]
 [ext_resource type="Script" uid="uid://ccsuocuo5haky" path="res://entities/ui/player_ui/spell_ui.gd" id="1_77lnr"]
 [ext_resource type="Script" uid="uid://c6htl8rduw4cs" path="res://entities/ui/player_ui/score_ui.gd" id="3_c8j1h"]
 [ext_resource type="Texture2D" uid="uid://te8clkjttuis" path="res://assets/spell_slot.png" id="3_pqswe"]
+[ext_resource type="FontFile" uid="uid://c4tenow6xi7a7" path="res://assets/Delius-Regular.ttf" id="3_q64d6"]
 [ext_resource type="Texture2D" uid="uid://dnuv6o62r0087" path="res://assets/simple_spell.png" id="4_ob18v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ob18v"]
@@ -13,10 +14,12 @@ bg_color = Color(0.242963, 0.465598, 0.236225, 1)
 bg_color = Color(9.62615e-07, 0.887201, 0.07393, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_77lnr"]
+font = ExtResource("3_q64d6")
 font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_a72te"]
-font_size = 52
+font = ExtResource("3_q64d6")
+font_size = 64
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
