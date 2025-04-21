@@ -12,7 +12,12 @@ const ENEMY_HIT_SOUND = preload("res://assets/enemy_hit.wav")
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 
+var is_dead := false
+
 func _on_health_component_health_reached_zero() -> void:
+	if is_dead: return
+	is_dead = true
+	
 	drop_pickups()
 	Global.player_killed_an_enemy.emit()
 	
