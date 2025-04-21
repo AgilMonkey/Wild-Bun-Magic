@@ -12,6 +12,7 @@ const DUCK_SPELL = preload("res://assets/duck_spell.png")
 
 func _ready() -> void:
 	GlobalUi.spell_changed.connect(change_spell_ui)
+	GlobalUi.spell_changed.emit(GlobalUi.cur_spell.spell_name)
 
 
 func _process(_delta: float) -> void:

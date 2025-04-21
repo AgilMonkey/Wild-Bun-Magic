@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dklbwgr08tit0"]
+[gd_scene load_steps=10 format=3 uid="uid://dklbwgr08tit0"]
 
 [ext_resource type="Script" uid="uid://uncsybshfvof" path="res://entities/ui/player_ui/healthbar_ui.gd" id="1_2d16l"]
 [ext_resource type="Script" uid="uid://ccsuocuo5haky" path="res://entities/ui/player_ui/spell_ui.gd" id="1_77lnr"]
 [ext_resource type="Script" uid="uid://c6htl8rduw4cs" path="res://entities/ui/player_ui/score_ui.gd" id="3_c8j1h"]
 [ext_resource type="Texture2D" uid="uid://te8clkjttuis" path="res://assets/spell_slot.png" id="3_pqswe"]
 [ext_resource type="Texture2D" uid="uid://dnuv6o62r0087" path="res://assets/simple_spell.png" id="4_ob18v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ob18v"]
+bg_color = Color(0.242963, 0.465598, 0.236225, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77lnr"]
 bg_color = Color(9.62615e-07, 0.887201, 0.07393, 1)
@@ -49,6 +52,7 @@ script = ExtResource("1_2d16l")
 layout_mode = 0
 offset_right = 407.0
 offset_bottom = 54.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ob18v")
 theme_override_styles/fill = SubResource("StyleBoxFlat_77lnr")
 step = 1.0
 value = 100.0
