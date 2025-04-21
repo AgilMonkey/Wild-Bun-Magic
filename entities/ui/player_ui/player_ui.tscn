@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dklbwgr08tit0"]
+[gd_scene load_steps=8 format=3 uid="uid://dklbwgr08tit0"]
 
 [ext_resource type="Script" uid="uid://uncsybshfvof" path="res://entities/ui/player_ui/healthbar_ui.gd" id="1_2d16l"]
 [ext_resource type="Script" uid="uid://ccsuocuo5haky" path="res://entities/ui/player_ui/spell_ui.gd" id="1_77lnr"]
 [ext_resource type="Script" uid="uid://c6htl8rduw4cs" path="res://entities/ui/player_ui/score_ui.gd" id="3_c8j1h"]
+[ext_resource type="Texture2D" uid="uid://te8clkjttuis" path="res://assets/spell_slot.png" id="3_pqswe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77lnr"]
 bg_color = Color(9.62615e-07, 0.887201, 0.07393, 1)
@@ -95,6 +96,20 @@ layout_mode = 2
 text = "Can Shoot!"
 label_settings = SubResource("LabelSettings_77lnr")
 horizontal_alignment = 2
+
+[node name="SpellSlot" type="TextureRect" parent="MarginContainer/Control/SpellUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_top = -225.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_pqswe")
+expand_mode = 1
 
 [node name="ScoreUI" type="Control" parent="MarginContainer/Control"]
 layout_mode = 1

@@ -11,7 +11,8 @@ func _init() -> void:
 	spell_name = "Machine Gun"
 	description = "M1 to shoot"
 	ammo = 70
-	damage = 10
+	damage = 25
+	speed = 900
 	rate_of_fire = 0.2
 	
 	bullet_scene = preload("res://entities/bullet/player_bullet/bullet.tscn")
