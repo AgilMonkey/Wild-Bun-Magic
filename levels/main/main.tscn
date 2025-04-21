@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca8tn02iyeljw"]
+[gd_scene load_steps=9 format=3 uid="uid://ca8tn02iyeljw"]
 
 [ext_resource type="PackedScene" uid="uid://dhl552xt6p4c1" path="res://entities/player/player.tscn" id="1_db3qx"]
 [ext_resource type="Script" uid="uid://bg16oasgteqcj" path="res://levels/main/main.gd" id="1_jvi5a"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dklbwgr08tit0" path="res://entities/ui/player_ui/player_ui.tscn" id="4_o4x35"]
 [ext_resource type="PackedScene" uid="uid://c2mjbspvxsudv" path="res://entities/ui/gameover_ui/gameover_ui.tscn" id="5_0cjx8"]
 [ext_resource type="PackedScene" uid="uid://vpq2j2mmkyfu" path="res://entities/managers/spawn_manager/spawn_manager.tscn" id="6_k73vk"]
+[ext_resource type="Texture2D" uid="uid://c0v5xd6uaektr" path="res://assets/tutorial.png" id="6_oclhf"]
 [ext_resource type="Script" uid="uid://c4tvag36b0ng5" path="res://levels/main/score_counter.gd" id="7_0cjx8"]
 
 [node name="main" type="Node2D"]
@@ -32,6 +33,29 @@ region_rect = Rect2(0, 0, 3840, 2160)
 
 [node name="GameoverUi" parent="UI" instance=ExtResource("5_0cjx8")]
 visible = false
+
+[node name="TutorialUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="ColorRect" parent="UI/TutorialUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.317647)
+
+[node name="TextureRect" type="TextureRect" parent="UI/TutorialUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_oclhf")
 
 [node name="SpawnManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_k73vk")]
 player = NodePath("../Player")
