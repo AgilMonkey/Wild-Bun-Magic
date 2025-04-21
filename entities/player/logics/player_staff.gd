@@ -46,6 +46,7 @@ func change_spell():
 		$SpellCastPoint.ready_yerself_dumbass()
 	
 	GlobalUi.cur_spell = cur_spell
+	GlobalUi.spell_changed.emit(cur_spell.spell_name)
 	
 	cur_spell.spell_casted.connect(func ():
 		staff_anim_player.stop()

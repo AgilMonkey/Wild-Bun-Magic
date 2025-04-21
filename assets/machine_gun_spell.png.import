@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnuv6o62r0087"
-path="res://.godot/imported/simple_shot.png-1870c9d4c4f9b3cc9c3195666916d374.ctex"
+uid="uid://dxrym7pd8ol0j"
+path="res://.godot/imported/machine_gun_spell.png-ed945b16bd6c8d66b6becb544cb87c85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/simple_shot.png"
-dest_files=["res://.godot/imported/simple_shot.png-1870c9d4c4f9b3cc9c3195666916d374.ctex"]
+source_file="res://assets/machine_gun_spell.png"
+dest_files=["res://.godot/imported/machine_gun_spell.png-ed945b16bd6c8d66b6becb544cb87c85.ctex"]
 
 [params]
 
